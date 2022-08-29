@@ -1,7 +1,7 @@
-import { randomBytes } from 'crypto';
-import { encode, decode } from 'thirty-two';
 import type { TOTPGenerateConfig, TOTPVerifyConfig } from './totp';
 import { generateTOTP, verifyTOTP } from './totp';
+import { randomBytes } from 'crypto';
+import { encode, decode } from 'thirty-two';
 
 export function restore2FASecret(bin: Buffer) {
   if (bin.length !== 20) {
@@ -35,7 +35,7 @@ export function generate2FASecret(account?: string) {
     qr,
     secret,
     uri,
-  }
+  };
 }
 
 export function generate2FAPasscode(secret: string | Buffer, config?: Partial<TOTPGenerateConfig>) {

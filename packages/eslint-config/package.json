@@ -5,6 +5,10 @@
   "author": "Eduardo Grajales Villanueva <edgravill@gmail.com>",
   "homepage": "https://github.com/EdGraVill/apptoolkit",
   "main": "index.js",
+  "files": [
+    "index.js",
+    "prettier.config.js"
+  ],
   "publishConfig": {
     "access": "public"
   },
