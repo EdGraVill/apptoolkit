@@ -1,11 +1,16 @@
 {
-  "name": "@apptoolkit/lint-config",
+  "name": "@apptoolkit/eslint-config",
   "version": "0.0.2",
   "description": "Eslint and Prettier common config",
   "author": "Eduardo Grajales Villanueva <edgravill@gmail.com>",
+  "homepage": "https://github.com/EdGraVill/apptoolkit",
   "main": "index.js",
   "publishConfig": {
     "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EdGraVill/apptoolkit.git"
   },
   "dependencies": {
     "@trivago/prettier-plugin-sort-imports": "^3.3.0",

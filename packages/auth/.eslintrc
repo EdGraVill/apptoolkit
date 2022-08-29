@@ -1,5 +1,5 @@
 {
   "extends": [
-    "@apptoolkit/lint-config"
+    "@apptoolkit"
   ]
 }
