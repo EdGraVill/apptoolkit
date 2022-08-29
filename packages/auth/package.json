@@ -1,6 +1,6 @@
 {
   "name": "@apptoolkit/auth",
-  "version": "0.0.53",
+  "version": "0.0.1",
   "main": "index.js",
   "scripts": {
     "test": "jest src --coverage",
@@ -18,7 +18,7 @@
     "thirty-two": "^1.0.2"
   },
   "devDependencies": {
-    "@apptoolkit/auth": "*",
+    "@apptoolkit/auth": "^0.0.1",
     "@types/bcrypt": "^5.0.0",
     "@types/jest": "^28.1.8",
     "@types/node": "^18.7.13",
