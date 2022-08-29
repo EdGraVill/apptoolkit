@@ -1,6 +1,5 @@
 {
   "name": "root",
-  "private": true,
   "workspaces": [
     "packages/*"
   ],
@@ -8,6 +7,7 @@
     "bootstrap": "lerna bootstrap",
     "create": "lerna create",
     "postinstall": "lerna bootstrap",
+    "publish": "lerna publish",
     "version": "lerna version"
   },
   "devDependencies": {

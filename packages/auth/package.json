@@ -2,6 +2,9 @@
   "name": "@apptoolkit/auth",
   "version": "0.0.1",
   "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "jest src --coverage",
     "lint": "eslint src"
