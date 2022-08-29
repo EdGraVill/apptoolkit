@@ -24,6 +24,14 @@ module.exports = {
       },
     ],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        printWidth: 120,
+        singleQuote: true,
+        trailingComma: 'all',
+      },
+    ],
     'react/jsx-sort-props': 'error',
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',

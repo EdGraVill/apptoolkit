@@ -5,10 +5,6 @@
   "author": "Eduardo Grajales Villanueva <edgravill@gmail.com>",
   "homepage": "https://github.com/EdGraVill/apptoolkit",
   "main": "index.js",
-  "files": [
-    "index.js",
-    "prettier.config.js"
-  ],
   "publishConfig": {
     "access": "public"
   },
@@ -26,10 +22,6 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.1",
     "eslint-plugin-typescript-sort-keys": "^2.1.0",
-    "prettier": "^2.7.1"
-  },
-  "peerDependencies": {
-    "eslint": "^8.23.0",
     "prettier": "^2.7.1"
   }
 }
