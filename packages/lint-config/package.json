@@ -1,0 +1,23 @@
+{
+  "name": "@apptoolkit/lint-config",
+  "version": "0.0.1",
+  "description": "Eslint and Prettier common config",
+  "author": "Eduardo Grajales Villanueva <edgravill@gmail.com>",
+  "main": "index.js",
+  "dependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^3.3.0",
+    "@typescript-eslint/eslint-plugin": "^5.35.1",
+    "@typescript-eslint/parser": "^5.35.1",
+    "eslint": "^8.23.0",
+    "eslint-config-next": "^12.2.5",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.1",
+    "eslint-plugin-typescript-sort-keys": "^2.1.0",
+    "prettier": "^2.7.1"
+  },
+  "peerDependencies": {
+    "eslint": "^8.23.0",
+    "prettier": "^2.7.1"
+  }
+}
