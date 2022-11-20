@@ -1,6 +1,6 @@
 {
   "name": "@apptoolkit/auth",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "index.js",
   "publishConfig": {
     "access": "public"
@@ -21,8 +21,8 @@
     "thirty-two": "^1.0.2"
   },
   "devDependencies": {
-    "@apptoolkit/eslint-config": "^0.0.7",
-    "@apptoolkit/rsa": "^0.0.7",
+    "@apptoolkit/eslint-config": "^0.0.8",
+    "@apptoolkit/rsa": "^0.0.8",
     "@types/bcrypt": "^5.0.0",
     "@types/jest": "^28.1.8",
     "@types/node": "^18.7.13",
