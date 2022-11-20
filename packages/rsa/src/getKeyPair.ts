@@ -1,24 +1,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { KeyObject } from 'crypto';
-import { createPrivateKey, createPublicKey, privateDecrypt, publicEncrypt } from 'crypto';
+import { createPrivateKey, createPublicKey } from 'crypto';
 
 export interface KeyPair {
   privateKey: KeyObject;
   publicKey: KeyObject;
 }
 
-const keypair: KeyPair | Record<keyof KeyPair, undefined | KeyObject> = ((global as any)[Symbol('keypair')] = {
+const keypair: KeyPair | Record<keyof KeyPair, undefined | KeyObject> = ((globalThis as any)[Symbol('keypair')] = {
   privateKey: undefined,
   publicKey: undefined,
 });
 
-export function getKeyPair(): KeyPair {
+export default function getKeyPair() {
   if (keypair.privateKey && keypair.publicKey) {
     return keypair as KeyPair;
   }
 
-  const stringPrivateKey = process.env.PRIVATE_KEY;
-  const passphrase = process.env.PASSPHRASE;
+  const stringPrivateKey = process.env.RSA_PRIVATE_KEY;
+  const passphrase = process.env.RSA_KEY_PASSPHRASE;
 
   if (!stringPrivateKey) {
     throw new Error(''); // TODO
@@ -33,16 +33,4 @@ export function getKeyPair(): KeyPair {
   keypair.publicKey = publicKey;
 
   return keypair as KeyPair;
-}
-
-export function encrypt(data: Buffer): Buffer {
-  const { publicKey } = getKeyPair();
-
-  return publicEncrypt(publicKey, data);
-}
-
-export function decryot(data: Buffer): Buffer {
-  const { privateKey } = getKeyPair();
-
-  return privateDecrypt(privateKey, data);
 }

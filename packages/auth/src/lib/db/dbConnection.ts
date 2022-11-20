@@ -1,11 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { globalGet, globalSet } from '../util';
 import type { CreateIndexesOptions, MongoClient, MongoClientOptions } from 'mongodb';
 import { MongoClient as mongodb } from 'mongodb';
 
-const createdIndexes: Record<string, boolean> = ((global as any).createdIndexes = {});
+const MongoConnectionKey = 'MongoConnection';
 
 export async function connectToDB(): Promise<MongoClient> {
-  const isAlreadyConnected: MongoClient | undefined = (global as any).mongoConnection;
+  const isAlreadyConnected = globalGet<MongoClient | undefined>(MongoConnectionKey);
 
   if (isAlreadyConnected) {
     console.info('Connection restored');
@@ -19,7 +19,7 @@ export async function connectToDB(): Promise<MongoClient> {
       useUnifiedTopology: true,
     } as MongoClientOptions);
 
-    (global as any).mongoConnection = connection;
+    globalSet(MongoConnectionKey, connection);
 
     console.info('Connected to DB');
 
@@ -30,17 +30,23 @@ export async function connectToDB(): Promise<MongoClient> {
   }
 }
 
+type StoredIndexes = Record<string, true>;
+const StoredIndexesKey = 'StoredIndexes';
+
 export async function createIndex(collection: string, index: string, options?: CreateIndexesOptions): Promise<void> {
   const key = `${collection}:${index}`;
 
-  if (!createdIndexes[key]) {
+  const storedIndexes = globalGet<StoredIndexes>(StoredIndexesKey);
+
+  if (!storedIndexes[key]) {
     const connection = await connectToDB();
 
     await connection
       .db()
-      .collection('accounts')
-      .createIndex('email', options as CreateIndexesOptions);
+      .collection(collection)
+      .createIndex(index, options as CreateIndexesOptions);
 
-    createdIndexes[key] = true;
+    storedIndexes[key] = true;
+    globalSet(StoredIndexesKey, storedIndexes);
   }
 }

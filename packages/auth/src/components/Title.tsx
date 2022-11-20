@@ -1,4 +1,4 @@
-import Hey from "./subtitle";
+import Hey from './subtitle';
 
 export default function Title() {
   return (

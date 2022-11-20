@@ -1,0 +1,35 @@
+{
+  "name": "@apptoolkit/rsa",
+  "version": "0.0.6",
+  "description": "RSA utils",
+  "author": "Eduardo Grajales Villanueva <edgravill@gmail.com>",
+  "homepage": "https://github.com/EdGraVill/apptoolkit#readme",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "directories": {
+    "dist": "dist"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EdGraVill/apptoolkit.git"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc --build"
+  },
+  "bugs": {
+    "url": "https://github.com/EdGraVill/apptoolkit/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@apptoolkit/eslint-config": "*",
+    "@types/jest": "^28.1.8",
+    "@types/node": "^18.7.13",
+    "typescript": "latest"
+  }
+}
