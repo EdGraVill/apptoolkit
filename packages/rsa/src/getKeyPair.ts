@@ -26,11 +26,15 @@ export default function getKeyPair() {
 
   const bufferPrivateKey = Buffer.from(stringPrivateKey);
 
-  const privateKey = createPrivateKey({ key: bufferPrivateKey, passphrase: passphrase });
-  const publicKey = createPublicKey({ key: Buffer.from(privateKey.export()) });
+  try {
+    const privateKey = createPrivateKey({ key: bufferPrivateKey, passphrase: passphrase });
+    const publicKey = createPublicKey({ key: Buffer.from(privateKey.export({ format: 'pem', type: 'pkcs8' })) });
 
-  keypair.privateKey = privateKey;
-  keypair.publicKey = publicKey;
+    keypair.privateKey = privateKey;
+    keypair.publicKey = publicKey;
 
-  return keypair as KeyPair;
+    return keypair as KeyPair;
+  } catch (error) {
+    throw new Error(''); // TODO
+  }
 }
