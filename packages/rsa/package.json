@@ -1,6 +1,6 @@
 {
   "name": "@apptoolkit/rsa",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "RSA utils",
   "author": "Eduardo Grajales Villanueva <edgravill@gmail.com>",
   "homepage": "https://github.com/EdGraVill/apptoolkit#readme",
@@ -25,9 +25,8 @@
   "bugs": {
     "url": "https://github.com/EdGraVill/apptoolkit/issues"
   },
-  "dependencies": {},
   "devDependencies": {
-    "@apptoolkit/eslint-config": "*",
+    "@apptoolkit/eslint-config": "^0.0.7",
     "@types/jest": "^28.1.8",
     "@types/node": "^18.7.13",
     "typescript": "latest"
