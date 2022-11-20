@@ -12,7 +12,7 @@ const keypair: KeyPair | Record<keyof KeyPair, undefined | KeyObject> = ((global
   publicKey: undefined,
 });
 
-export default function getKeyPair() {
+function getKeyPair() {
   if (keypair.privateKey && keypair.publicKey) {
     return keypair as KeyPair;
   }
@@ -38,3 +38,10 @@ export default function getKeyPair() {
     throw new Error(''); // TODO
   }
 }
+
+export default Object.assign(getKeyPair, {
+  cleanCache() {
+    keypair.privateKey = undefined;
+    keypair.publicKey = undefined;
+  },
+});

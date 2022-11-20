@@ -10,7 +10,7 @@ export type JWTPayload = {
 export async function signJWT(payload: JWTPayload, expirationTime = '90d'): Promise<string> {
   const { privateKey } = getKeyPair();
 
-  const jwt = new SignJWT(payload).setProtectedHeader({ alg: 'ES256' }).setIssuedAt().setExpirationTime(expirationTime);
+  const jwt = new SignJWT(payload).setProtectedHeader({ alg: 'RS256' }).setIssuedAt().setExpirationTime(expirationTime);
 
   if (process.env.APP_NAME) {
     jwt.setIssuer(process.env.APP_NAME);

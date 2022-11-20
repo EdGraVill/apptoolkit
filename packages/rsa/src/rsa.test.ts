@@ -58,6 +58,15 @@ describe('getKeyPair', () => {
 
     expect(keypair).toBe(secondKeypair);
   });
+
+  it('Should clean the cache', () => {
+    const spy = jest.spyOn(Buffer, 'from');
+
+    getKeyPair.cleanCache();
+    getKeyPair();
+
+    expect(spy).toHaveBeenCalled();
+  });
 });
 
 describe('encrypt / decrypt', () => {
