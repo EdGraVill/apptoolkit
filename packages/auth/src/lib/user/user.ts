@@ -1,6 +1,6 @@
 import { connectToDB, createIndex } from '../db/dbConnection';
-import { signJWT, verifyJWT } from '../jwt/jwt';
 import { generate2FASecret, verify2FAPasscode } from '@apptoolkit/2fa';
+import { signJWT, verifyJWT } from '@apptoolkit/jwt';
 import { encrypt } from '@apptoolkit/rsa';
 import { compare, hash } from 'bcrypt';
 

@@ -23,6 +23,7 @@
   "devDependencies": {
     "@apptoolkit/2fa": "^0.0.11",
     "@apptoolkit/eslint-config": "^0.0.11",
+    "@apptoolkit/jwt": "^0.0.11",
     "@apptoolkit/rsa": "^0.0.11",
     "@types/bcrypt": "^5.0.0",
     "@types/jest": "^28.1.8",
