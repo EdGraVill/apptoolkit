@@ -2,7 +2,6 @@ import decrypt from './decrypt';
 import encrypt from './encrypt';
 import generateKeypair from './generateKeypair';
 import getKeyPair from './getKeyPair';
-import { randomBytes } from 'crypto';
 
 describe('generateKeypair', () => {
   it('Should fail if a passphrase is not provided', async () => {
