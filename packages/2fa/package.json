@@ -1,0 +1,44 @@
+{
+  "name": "@apptoolkit/2fa",
+  "version": "0.0.8",
+  "description": "Two factor authentication utillity",
+  "author": "Eduardo Grajales Villanueva <edgravill@gmail.com>",
+  "homepage": "https://github.com/EdGraVill/apptoolkit#readme",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "directories": {
+    "dist": "dist"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EdGraVill/apptoolkit.git"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc --build",
+    "test": "jest"
+  },
+  "bugs": {
+    "url": "https://github.com/EdGraVill/apptoolkit/issues"
+  },
+  "devDependencies": {
+    "@apptoolkit/eslint-config": "^0.0.8",
+    "@babel/core": "^7.20.2",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-typescript": "^7.18.6",
+    "@types/jest": "^28.1.8",
+    "@types/node": "^18.7.13",
+    "babel-jest": "^29.3.1",
+    "jest": "^29.3.1",
+    "ts-node": "^10.9.1",
+    "typescript": "latest"
+  },
+  "dependencies": {
+    "thirty-two": "^1.0.2"
+  }
+}

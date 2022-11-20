@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createHmac } from 'crypto';
 
 export function hexToBytes(hex: string) {
@@ -30,13 +31,13 @@ export function generateHOTP(key: string | Buffer, counter = 0, config: Partial<
 
   const hex = hexToBytes(digest);
 
-  const offset = hex[19] & 0xf;
+  const offset = hex[19]! & 0xf;
 
   const calc =
-    ((hex[offset] & 0x7f) << 24) |
-    ((hex[offset + 1] & 0xff) << 16) |
-    ((hex[offset + 2] & 0xff) << 8) |
-    (hex[offset + 3] & 0xff);
+    ((hex[offset]! & 0x7f) << 24) |
+    ((hex[offset + 1]! & 0xff) << 16) |
+    ((hex[offset + 2]! & 0xff) << 8) |
+    (hex[offset + 3]! & 0xff);
 
   const preToken = `${calc % Math.pow(10, tokenLength)}`;
 

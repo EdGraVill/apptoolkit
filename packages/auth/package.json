@@ -21,6 +21,7 @@
     "thirty-two": "^1.0.2"
   },
   "devDependencies": {
+    "@apptoolkit/2fa": "*",
     "@apptoolkit/eslint-config": "^0.0.8",
     "@apptoolkit/rsa": "^0.0.8",
     "@types/bcrypt": "^5.0.0",
