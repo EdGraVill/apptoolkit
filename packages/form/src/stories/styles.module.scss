@@ -1,0 +1,33 @@
+.input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin-bottom: 1rem;
+  max-width: 10rem;
+
+  & > span {
+    font-weight: bold;
+    font-size: 0.8rem;
+  }
+
+  & > input {
+    border: 1px solid gray;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+  }
+
+  & > small {
+    color: gainsboro;
+    font-size: 0.8rem;
+    padding: 0.2rem 1rem;
+  }
+
+  & > p {
+    color: brown;
+    font-size: 0.8rem;
+    margin: 0;
+    padding: 0;
+  }
+}
