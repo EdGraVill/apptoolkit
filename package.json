@@ -9,7 +9,6 @@
     "postinstall": "lerna bootstrap",
     "publish": "lerna publish",
     "version": "lerna version",
-    "form:start": "lerna run start --scope=@apptoolkit/form",
     "form:build": "lerna run build --scope=@apptoolkit/form",
     "form:test": "lerna run test --scope=@apptoolkit/form",
     "form:storybook": "lerna run storybook --scope=@apptoolkit/form",
