@@ -8,7 +8,11 @@
     "create": "lerna create",
     "postinstall": "lerna bootstrap",
     "publish": "lerna publish",
-    "version": "lerna version"
+    "version": "lerna version",
+    "form:build": "lerna run build --scope=@apptoolkit/form",
+    "form:test": "lerna run test --scope=@apptoolkit/form",
+    "form:storybook": "lerna run storybook --scope=@apptoolkit/form",
+    "form:test-storybook": "lerna run test-storybook --scope=@apptoolkit/form"
   },
   "devDependencies": {
     "lerna": "^5.4.3"
