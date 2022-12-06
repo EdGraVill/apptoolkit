@@ -9,14 +9,12 @@
   "publishConfig": {
     "access": "public"
   },
-  "files": [
-    "dist"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/EdGraVill/apptoolkit.git"
   },
   "scripts": {
+    "prepublish": "npm run build && ./bin/pre-publish",
     "build": "rm -rf dist && tsc --build",
     "test": "jest"
   },
