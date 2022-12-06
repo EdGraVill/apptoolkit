@@ -1,6 +1,6 @@
 {
   "name": "@apptoolkit/eslint-config",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Eslint and Prettier common config",
   "author": "Eduardo Grajales Villanueva <edgravill@gmail.com>",
   "homepage": "https://github.com/EdGraVill/apptoolkit",
