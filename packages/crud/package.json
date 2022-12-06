@@ -14,7 +14,7 @@
     "url": "git+https://github.com/EdGraVill/apptoolkit.git"
   },
   "scripts": {
-    "prepublish": "npm run build && ./bin/pre-publish",
+    "prepublish": "npm run build && ./bin/pre-publish.sh",
     "build": "rm -rf dist && tsc --build",
     "test": "jest"
   },

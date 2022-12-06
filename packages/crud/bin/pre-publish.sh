@@ -10,6 +10,7 @@ done
 
 sed -i '' '/\"scripts\"/,/}/ d; /^$/d' package.json;
 sed -i '' '/\"devDependencies\"/,/}/ d; /^$/d' package.json;
+rm -rf src
 rm -rf bin
 rm .eslintrc
 mv ./dist/* ./
