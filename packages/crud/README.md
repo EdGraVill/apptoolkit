@@ -77,18 +77,18 @@ updatedUser.name // John H.
         ✓ Should connect to database
       [ARGUMENTS]
         ✓ Should not connect to database if host is wrong
-          Should not connect to database if auth is wrong
+        ✓ Should not connect to database if auth failed
       [SIDE EFFECTS]
           Should create a connection instance for each CRUD instance (TODO)
       [RETURN]
-          Should return the same instance
+        ✓ Should return the same instance
     disconnect
       [MAIN FUNCTIONALITY]  
         ✓ Should disconnect from database
       [ARGUMENTS]
       [SIDE EFFECTS]
         ✓ Should throw an error if trying to disconnect without db connected
-          Should only disconnect the current connection without close other instance's connections
+          Should only disconnect the current connection without close other instance's connections (TODO)
       [RETURN]
   Methods
     create
@@ -99,8 +99,8 @@ updatedUser.name // John H.
           Should throw an error if has a duplicated unique field
           Should throw an error if the required fields are missing
           Should throw an error if the index fields are missing
-          Should throw an error if the immutable fields are missing
           Should ignore fields that are not defined
+          Should use the default value
       [SIDE EFFECTS]
           Should throw an error if connection with database is lost
       [RETURN]
@@ -115,6 +115,7 @@ updatedUser.name // John H.
           Should throw an error if any of the entries has the index fields are missing and do not insert anything
           Should throw an error if any of the entries has the immutable fields are missing and do not insert anything
           Should ignore fields that are not defined
+          Should use the default value
       [SIDE EFFECTS]
           Should throw an error if connection with database is lost
       [RETURN]
