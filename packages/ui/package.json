@@ -32,6 +32,10 @@
   "peerDependencies": {
     "react": "^18.2.0"
   },
+  "dependencies": {
+    "@apptoolkit/form": "^0.0.18",
+    "tailwind-merge": "^1.8.0"
+  },
   "devDependencies": {
     "@apptoolkit/eslint-config": "^0.0.18",
     "@babel/core": "^7.20.2",

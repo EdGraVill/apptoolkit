@@ -30,11 +30,11 @@
     "rsa:build": "lerna run build --scope=@apptoolkit/rsa",
     "rsa:test": "lerna run test --scope=@apptoolkit/rsa",
     "rsa:publish": "lerna run publish --no-private --scope=@apptoolkit/rsa",
-    "ui:build": "lerna run build --scope=@apptoolkit/form",
-    "ui:test": "lerna run test --scope=@apptoolkit/form",
-    "ui:storybook": "lerna run storybook --scope=@apptoolkit/form",
-    "ui:test-storybook": "lerna run test-storybook --scope=@apptoolkit/form",
-    "ui:publish-storybook": "lerna run publish --no-private --scope=@apptoolkit/form"
+    "ui:build": "lerna run build --scope=@apptoolkit/ui",
+    "ui:test": "lerna run test --scope=@apptoolkit/ui",
+    "ui:storybook": "lerna run storybook --scope=@apptoolkit/ui",
+    "ui:test-storybook": "lerna run test-storybook --scope=@apptoolkit/ui",
+    "ui:publish-storybook": "lerna run publish --no-private --scope=@apptoolkit/ui"
   },
   "devDependencies": {
     "lerna": "^5.4.3"

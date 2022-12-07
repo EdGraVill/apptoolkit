@@ -11,6 +11,7 @@ export type { HTMLInputLikeElement, InjectedInputProps, WithoutNameInjectedInput
 export type { EventListener } from './events';
 export type { Context } from './context';
 export type { InputDefinition, InputState } from './state';
+export type { Severity } from './validation';
 
 export default Object.assign(Form, {
   Event,

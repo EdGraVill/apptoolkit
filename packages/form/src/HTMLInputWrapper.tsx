@@ -100,9 +100,10 @@ export function HTMLInputWrapper({ children, name }: PropsWithoutName | PropsWit
 }
 
 export function mergeEventHandlers<F extends (...args: Parameters<F>) => void>(
-  ...handlers: F[]
+  base: F,
+  ...handlers: Array<F | undefined>
 ): (...args: Parameters<F>) => void {
   return (...args: Parameters<F>) => {
-    handlers.forEach((handler) => handler(...args));
+    [base, ...handlers].forEach((handler) => handler?.(...args));
   };
 }
