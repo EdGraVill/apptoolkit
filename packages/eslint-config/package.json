@@ -12,9 +12,6 @@
     "type": "git",
     "url": "git+https://github.com/EdGraVill/apptoolkit.git"
   },
-  "scripts": {
-    "publish": "npm publish"
-  },
   "dependencies": {
     "@trivago/prettier-plugin-sort-imports": "^3.3.0",
     "@typescript-eslint/eslint-plugin": "^5.35.1",

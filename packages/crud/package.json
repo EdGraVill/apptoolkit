@@ -15,9 +15,7 @@
   },
   "scripts": {
     "build": "rm -rf dist && tsc --build",
-    "test": "jest",
-    "prepublish": "npm run build",
-    "publish": "npm publish"
+    "test": "jest"
   },
   "bugs": {
     "url": "https://github.com/EdGraVill/apptoolkit/issues"
