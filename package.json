@@ -14,16 +14,21 @@
     "test": "lerna run test",
     "2fa:build": "lerna run build --scope=@apptoolkit/2fa",
     "2fa:test": "lerna run test --scope=@apptoolkit/2fa",
+    "2fa:publish": "lerna run publish --scope=@apptoolkit/2fa",
     "crud:build": "lerna run build --scope=@apptoolkit/crud",
     "crud:test": "lerna run test --scope=@apptoolkit/crud",
+    "crud:publish": "lerna run publish --scope=@apptoolkit/crud",
     "form:build": "lerna run build --scope=@apptoolkit/form",
     "form:test": "lerna run test --scope=@apptoolkit/form",
     "form:storybook": "lerna run storybook --scope=@apptoolkit/form",
     "form:test-storybook": "lerna run test-storybook --scope=@apptoolkit/form",
+    "form:publish-storybook": "lerna run publish --scope=@apptoolkit/form",
     "jwt:build": "lerna run build --scope=@apptoolkit/jwt",
     "jwt:test": "lerna run test --scope=@apptoolkit/jwt",
+    "jwt:publish": "lerna run publish --scope=@apptoolkit/jwt",
     "rsa:build": "lerna run build --scope=@apptoolkit/rsa",
-    "rsa:test": "lerna run test --scope=@apptoolkit/rsa"
+    "rsa:test": "lerna run test --scope=@apptoolkit/rsa",
+    "rsa:publish": "lerna run publish --scope=@apptoolkit/rsa"
   },
   "devDependencies": {
     "lerna": "^5.4.3"
