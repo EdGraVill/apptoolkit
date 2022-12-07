@@ -1,6 +1,6 @@
 {
   "name": "@apptoolkit/auth",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "main": "index.js",
   "publishConfig": {
     "access": "public"
@@ -10,7 +10,7 @@
     "lint": "eslint src"
   },
   "dependencies": {
-    "@apptoolkit/crud": "^0.0.13",
+    "@apptoolkit/crud": "^0.0.14",
     "bcrypt": "^5.0.1",
     "dns": "^0.2.2",
     "jose": "^4.9.0",
@@ -22,10 +22,10 @@
     "thirty-two": "^1.0.2"
   },
   "devDependencies": {
-    "@apptoolkit/2fa": "^0.0.13",
-    "@apptoolkit/eslint-config": "^0.0.13",
-    "@apptoolkit/jwt": "^0.0.13",
-    "@apptoolkit/rsa": "^0.0.13",
+    "@apptoolkit/2fa": "^0.0.14",
+    "@apptoolkit/eslint-config": "^0.0.14",
+    "@apptoolkit/jwt": "^0.0.14",
+    "@apptoolkit/rsa": "^0.0.14",
     "@types/bcrypt": "^5.0.0",
     "@types/jest": "^28.1.8",
     "@types/node": "^18.7.13",
