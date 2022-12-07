@@ -10,6 +10,7 @@
     "lint": "eslint src"
   },
   "dependencies": {
+    "@apptoolkit/crud": "^0.0.13",
     "bcrypt": "^5.0.1",
     "dns": "^0.2.2",
     "jose": "^4.9.0",
