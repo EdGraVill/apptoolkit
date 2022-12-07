@@ -31,6 +31,8 @@ export function feedbackize(feedback: string | boolean | Feedback | undefined): 
       severity: Severity.error,
     };
   }
+
+  return undefined;
 }
 
 export function validate(value: string, validators: ValidatorFunction[] | undefined): Feedback[] {

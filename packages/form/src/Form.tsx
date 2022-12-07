@@ -8,7 +8,7 @@ import { Severity } from './validation';
 import type { FC, ReactElement } from 'react';
 import { useCallback, useEffect, useState } from 'react';
 
-interface Props {
+export interface Props {
   children?: ReactElement | ReactElement[];
   inputDefinitions?: InputDefinition[];
   onSubmit?(context: Context): void;
@@ -66,7 +66,9 @@ const Form: FC<Props> = ({ children, inputDefinitions = [], onSubmit, signal }) 
           if (!isTheSame) {
             dispatchEvent(
               internalEvent,
-              internalEvent === Event.clearAll ? { names } : { names, values: names.map((name) => cloneValues[name]) },
+              internalEvent === Event.clearAll
+                ? { names }
+                : { names, values: names.map((name) => cloneValues[name]) as string[] },
             );
           }
         });
@@ -78,11 +80,15 @@ const Form: FC<Props> = ({ children, inputDefinitions = [], onSubmit, signal }) 
   const state = composeState(inputDefinitions, values);
 
   const getValue = (name: string) => {
-    if (typeof values[name] === 'string') {
-      dispatchEvent(Event.get, state[name]);
+    const inState = state[name];
+
+    if (typeof values[name] === 'string' && inState) {
+      dispatchEvent(Event.get, inState);
 
       return values[name];
     }
+
+    return undefined;
   };
 
   const getManyValues = (names: string[]) => {
@@ -131,13 +137,13 @@ const Form: FC<Props> = ({ children, inputDefinitions = [], onSubmit, signal }) 
   const isValid = (name: string | string[]): boolean => {
     if (typeof name === 'string' && typeof state[name] !== 'undefined') {
       const result =
-        state[name].feedback?.reduce<boolean>(
+        state[name]?.feedback?.reduce<boolean>(
           (acc, curr) => Boolean(Number(acc) * Number(curr.severity !== Severity.error)),
           true,
         ) ?? true;
 
       dispatchEvent(Event.validate, {
-        feedback: state[name].feedback ?? [],
+        feedback: state[name]?.feedback ?? [],
         name,
         result,
       });

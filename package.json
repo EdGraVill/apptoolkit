@@ -7,12 +7,23 @@
     "bootstrap": "lerna bootstrap",
     "create": "lerna create",
     "postinstall": "lerna bootstrap",
+    "prepublish": "lerna run build",
     "publish": "lerna publish",
     "version": "lerna version",
+    "build": "lerna run build",
+    "test": "lerna run test",
+    "2fa:build": "lerna run build --scope=@apptoolkit/2fa",
+    "2fa:test": "lerna run test --scope=@apptoolkit/2fa",
+    "crud:build": "lerna run build --scope=@apptoolkit/crud",
+    "crud:test": "lerna run test --scope=@apptoolkit/crud",
     "form:build": "lerna run build --scope=@apptoolkit/form",
     "form:test": "lerna run test --scope=@apptoolkit/form",
     "form:storybook": "lerna run storybook --scope=@apptoolkit/form",
-    "form:test-storybook": "lerna run test-storybook --scope=@apptoolkit/form"
+    "form:test-storybook": "lerna run test-storybook --scope=@apptoolkit/form",
+    "jwt:build": "lerna run build --scope=@apptoolkit/jwt",
+    "jwt:test": "lerna run test --scope=@apptoolkit/jwt",
+    "rsa:build": "lerna run build --scope=@apptoolkit/rsa",
+    "rsa:test": "lerna run test --scope=@apptoolkit/rsa"
   },
   "devDependencies": {
     "lerna": "^5.4.3"

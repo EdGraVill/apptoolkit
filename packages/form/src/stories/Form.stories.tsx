@@ -1,8 +1,7 @@
-import type { FormContext, InputDefinition } from '../';
+import type { Context, InputDefinition } from '../';
 import Form from '../';
 import { CancelInput, EmailInput, FirstNameInput, LastNameInput, PasswordInput, SubmitInput } from './Inputs';
 import styles from './styles.module.scss';
-import './tailwind.css';
 import { action } from '@storybook/addon-actions';
 import { expect } from '@storybook/jest';
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
@@ -70,7 +69,7 @@ ComplexUsage.decorators = [
       clearAllValues();
     }, [isSignIn]);
 
-    const onSignUpSubmit = useCallback((formContext: FormContext) => {
+    const onSignUpSubmit = useCallback((formContext: Context) => {
       const isValid = formContext.isValid(['firstName', 'lastName', 'email', 'password']);
 
       if (isValid) {
@@ -167,7 +166,7 @@ OnSubmitHandling.decorators = [
   (Frm, args) => {
     const [values, setValues] = useState({ email: '', password: '' });
 
-    const onSubmit = useCallback((formContext: FormContext) => {
+    const onSubmit = useCallback((formContext: Context) => {
       const areValid = formContext.isValid(['email', 'password']);
 
       if (areValid) {
@@ -217,7 +216,7 @@ EventListenerHandling.decorators = [
     const [values, setValues] = useState({ email: '', password: '' });
 
     useEffect(() => {
-      const removeListener = Form.addEventListener(Form.FormEvent.submit, (formContext) => {
+      const removeListener = Form.addEventListener(Form.Event.submit, (formContext) => {
         const areValid = formContext.isValid(['email', 'password']);
 
         if (areValid) {
@@ -251,7 +250,7 @@ SignalHandling.decorators = [
     const { resetAllValues, signal } = Form.useSignal();
 
     useEffect(() => {
-      const removeListener = Form.addEventListener(Form.FormEvent.submit, (formContext) => {
+      const removeListener = Form.addEventListener(Form.Event.submit, (formContext) => {
         const areValid = formContext.isValid(['email', 'password']);
 
         if (areValid) {

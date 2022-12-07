@@ -70,14 +70,14 @@ describe('composeState', () => {
         feedback: [],
         initialValue: undefined,
         name: 'field',
-        validators: undefined,
+        validators: [],
         value: 'value',
       },
       foo: {
         feedback: [],
         initialValue: 'value',
         name: 'foo',
-        validators: undefined,
+        validators: [],
         value: '',
       },
     };

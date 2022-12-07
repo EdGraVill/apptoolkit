@@ -20,10 +20,8 @@
     "url": "git+https://github.com/EdGraVill/apptoolkit.git"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --verbose --coverage --watchAll=false --collectCoverageFrom=!src/stories/**/*.* src",
-    "eject": "react-scripts eject",
+    "build": "rm -rf dist && tsc --build",
+    "test": "jest",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "test-storybook": "test-storybook --coverage && npx nyc report --reporter=lcov -t coverage/storybook --report-dir coverage/storybook"
@@ -31,13 +29,15 @@
   "bugs": {
     "url": "https://github.com/EdGraVill/apptoolkit/issues"
   },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1"
+  "peerDependencies": {
+    "react": "^18.2.0"
   },
   "devDependencies": {
     "@apptoolkit/eslint-config": "^0.0.14",
+    "@babel/core": "^7.20.2",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
     "@storybook/addon-actions": "^6.5.13",
     "@storybook/addon-coverage": "^0.0.6",
     "@storybook/addon-essentials": "^6.5.13",
@@ -47,7 +47,6 @@
     "@storybook/jest": "^0.0.10",
     "@storybook/manager-webpack5": "^6.5.13",
     "@storybook/node-logger": "^6.5.13",
-    "@storybook/preset-create-react-app": "^4.1.2",
     "@storybook/react": "^6.5.13",
     "@storybook/test-runner": "^0.9.1",
     "@storybook/testing-library": "^0.0.13",
@@ -58,9 +57,15 @@
     "@types/node": "^16.18.3",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
+    "babel-jest": "^29.3.1",
     "babel-plugin-named-exports-order": "^0.0.2",
+    "css-loader": "^6.7.2",
+    "postcss-loader": "^7.0.2",
     "prop-types": "^15.8.1",
+    "react": "^18.2.0",
     "sass": "^1.56.1",
+    "sass-loader": "^13.2.0",
+    "style-loader": "^3.3.1",
     "tailwindcss": "^3.2.4",
     "typescript": "^4.9.3",
     "webpack": "^5.75.0"
@@ -78,18 +83,6 @@
           "import/no-anonymous-default-export": "off"
         }
       }
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
     ]
   }
 }

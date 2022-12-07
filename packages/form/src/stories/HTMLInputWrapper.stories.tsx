@@ -1,6 +1,5 @@
 import Form from '../';
 import styles from './styles.module.scss';
-import './tailwind.css';
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 
 export default {

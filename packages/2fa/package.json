@@ -40,5 +40,10 @@
   },
   "dependencies": {
     "thirty-two": "^1.0.2"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@apptoolkit"
+    ]
   }
 }

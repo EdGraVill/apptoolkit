@@ -93,7 +93,7 @@ export function HTMLInputWrapper({ children, name }: PropsWithoutName | PropsWit
     isDirty,
     onBlur,
     onChange,
-    value: formContext.state[name]?.value,
+    value: formContext.state[name]?.value ?? '',
   };
 
   return children(propsToInject);

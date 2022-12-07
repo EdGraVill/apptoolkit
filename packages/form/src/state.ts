@@ -16,9 +16,7 @@ export function compareValues(original: Values, replace: Values, sideFunction?: 
     return replace;
   }
 
-  for (let index = 0; index < keys.length; index += 1) {
-    const key = keys[index];
-
+  for (const key of keys) {
     if (original[key] !== replace[key]) {
       sideFunction?.(false);
       return replace;
@@ -59,16 +57,16 @@ export interface InputState extends InputDefinition {
 export type State = Record<string, InputState>;
 
 export function composeState(inputDefinitions: InputDefinition[], values: Values): State {
-  return Object.keys(values).reduce<Record<string, InputState>>((acc, curr) => {
+  return Object.keys(values).reduce((acc, curr) => {
     const inputDefinition: InputDefinition | undefined = inputDefinitions.find(({ name }) => name === curr);
 
     return {
       ...acc,
       [curr]: {
-        feedback: validate(values[curr], inputDefinition?.validators),
+        feedback: validate(values[curr] ?? '', inputDefinition?.validators),
         initialValue: inputDefinition?.initialValue,
         name: curr,
-        validators: inputDefinition?.validators,
+        validators: inputDefinition?.validators ?? [],
         value: values[curr],
       },
     };

@@ -14,7 +14,6 @@
     "url": "git+https://github.com/EdGraVill/apptoolkit.git"
   },
   "scripts": {
-    "prepublish": "npm run build && ./bin/pre-publish.sh",
     "build": "rm -rf dist && tsc --build",
     "test": "jest"
   },
@@ -37,5 +36,10 @@
   },
   "peerDependencies": {
     "mongodb": "^4.12.1"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@apptoolkit"
+    ]
   }
 }
