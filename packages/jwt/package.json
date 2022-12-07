@@ -1,6 +1,6 @@
 {
   "name": "@apptoolkit/jwt",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "JWT utillity",
   "author": "Eduardo Grajales Villanueva <edgravill@gmail.com>",
   "homepage": "https://github.com/EdGraVill/apptoolkit#readme",
@@ -27,8 +27,8 @@
     "url": "https://github.com/EdGraVill/apptoolkit/issues"
   },
   "devDependencies": {
-    "@apptoolkit/eslint-config": "^0.0.16",
-    "@apptoolkit/rsa": "^0.0.16",
+    "@apptoolkit/eslint-config": "^0.0.17",
+    "@apptoolkit/rsa": "^0.0.17",
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-typescript": "^7.18.6",
