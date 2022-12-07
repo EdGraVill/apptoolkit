@@ -1,6 +1,6 @@
 {
   "name": "@apptoolkit/ui",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "UI React components",
   "author": "Eduardo Grajales Villanueva <edgravill@gmail.com>",
   "homepage": "https://github.com/EdGraVill/apptoolkit#readme",
@@ -33,7 +33,7 @@
     "react": "^18.2.0"
   },
   "devDependencies": {
-    "@apptoolkit/eslint-config": "^0.0.17",
+    "@apptoolkit/eslint-config": "^0.0.18",
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
