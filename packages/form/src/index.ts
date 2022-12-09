@@ -3,7 +3,7 @@ import { HTMLInputWrapper, mergeEventHandlers } from './HTMLInputWrapper';
 import { Context, defaultContextValue, useContext } from './context';
 import { addEventListener, dispatchEvent, Event } from './events';
 import useSignal from './useSignal';
-import { commonValidators, feedbackize, Severity, validate } from './validation';
+import { commonValidators, feedbackize, patterns, Severity, validate } from './validation';
 
 export type { Feedback, ValidatorFunction } from './validation';
 export type { Signal } from './useSignal';
@@ -20,7 +20,9 @@ export default Object.assign(Form, {
   }),
   Severity,
   addEventListener,
-  commonValidators,
+  commonValidators: Object.assign(commonValidators, {
+    patterns,
+  }),
   context: Object.assign(Context, {
     defaultContextValue,
   }),

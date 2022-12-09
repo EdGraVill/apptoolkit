@@ -1,2 +1,0 @@
-- [ ] Add logger
-- [ ] Handle custo errors (Standarize them)

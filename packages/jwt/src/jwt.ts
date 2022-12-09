@@ -8,7 +8,7 @@ export type JWTPayload = {
 };
 
 export async function signJWT(payload: JWTPayload, expirationTime = '90d'): Promise<string> {
-  const { privateKey } = getKeyPair();
+  const { privateKey } = await getKeyPair();
 
   const jwt = new SignJWT(payload).setProtectedHeader({ alg: 'RS256' }).setIssuedAt().setExpirationTime(expirationTime);
 
@@ -20,7 +20,7 @@ export async function signJWT(payload: JWTPayload, expirationTime = '90d'): Prom
 }
 
 export async function verifyJWT(jwt: string): Promise<JWTPayload> {
-  const { publicKey } = getKeyPair();
+  const { publicKey } = await getKeyPair();
 
   const { payload } = await jwtVerify(jwt, publicKey, process.env.APP_NAME ? { issuer: process.env.APP_NAME } : {});
 

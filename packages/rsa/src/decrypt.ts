@@ -2,8 +2,8 @@
 import getKeyPair from './getKeyPair';
 import { privateDecrypt } from 'crypto';
 
-export default function decrypt(data: Buffer) {
-  const { privateKey } = getKeyPair();
+export default async function decrypt(data: Buffer) {
+  const { privateKey } = await getKeyPair();
   const chunkSize = Math.floor(privateKey.asymmetricKeyDetails!.modulusLength! / 8);
 
   if (data.length === chunkSize) {

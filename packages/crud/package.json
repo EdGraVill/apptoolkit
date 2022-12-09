@@ -37,6 +37,9 @@
   "peerDependencies": {
     "mongodb": "^4.12.1"
   },
+  "dependencies": {
+    "mongodb": "^4.12.1"
+  },
   "eslintConfig": {
     "extends": [
       "@apptoolkit"

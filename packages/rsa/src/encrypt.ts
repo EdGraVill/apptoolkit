@@ -2,8 +2,8 @@
 import getKeyPair from './getKeyPair';
 import { publicEncrypt } from 'crypto';
 
-export default function encrypt(data: Buffer) {
-  const { publicKey } = getKeyPair();
+export default async function encrypt(data: Buffer) {
+  const { publicKey } = await getKeyPair();
   const chunkSize = Math.floor(publicKey.asymmetricKeyDetails!.modulusLength! / 8);
   const maxLength = Math.floor(chunkSize * 0.9);
 

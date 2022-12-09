@@ -43,13 +43,15 @@ export function validate(value: string, validators: ValidatorFunction[] | undefi
   return validators.map((validator) => feedbackize(validator?.(value))).filter(Boolean) as Feedback[];
 }
 
+export const patterns = {
+  email:
+    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
+};
+
 const commonValidatorsFactory = {
   includesCapital: (value: string) => /[A-Z]/.test(value),
   includesNumber: (value: string) => /[0-9]/.test(value),
-  isEmail: (value: string) =>
-    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(
-      value,
-    ),
+  isEmail: (value: string) => patterns.email.test(value),
   isRequired: (value: string) => !!value,
 } as const;
 

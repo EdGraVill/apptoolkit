@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { KeyObject } from 'crypto';
 import { createPrivateKey, createPublicKey } from 'crypto';
+import { readFile } from 'fs/promises';
 
 export interface KeyPair {
   privateKey: KeyObject;
@@ -12,13 +13,19 @@ const keypair: KeyPair | Record<keyof KeyPair, undefined | KeyObject> = ((global
   publicKey: undefined,
 });
 
-function getKeyPair() {
+async function getKeyPair() {
   if (keypair.privateKey && keypair.publicKey) {
     return keypair as KeyPair;
   }
 
-  const stringPrivateKey = process.env.RSA_PRIVATE_KEY;
+  let stringPrivateKey = process.env.RSA_PRIVATE_KEY;
   const passphrase = process.env.RSA_KEY_PASSPHRASE;
+
+  if (stringPrivateKey?.includes('.pem') && !stringPrivateKey.includes('KEY-----')) {
+    try {
+      stringPrivateKey = await readFile(stringPrivateKey, { encoding: 'utf-8' });
+    } catch (error) {}
+  }
 
   if (!stringPrivateKey) {
     throw new Error(''); // TODO

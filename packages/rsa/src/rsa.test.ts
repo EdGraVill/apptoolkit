@@ -31,39 +31,39 @@ describe('getKeyPair', () => {
     process.env.RSA_KEY_PASSPHRASE = passphrase;
   });
 
-  it('Should throw an error if privateKey is not provided', () => {
+  it('Should throw an error if privateKey is not provided', async () => {
     delete process.env.RSA_PRIVATE_KEY;
 
-    expect(() => getKeyPair()).toThrow();
+    await expect(() => getKeyPair()).rejects.toThrow();
   });
 
-  it('Should throw an error if passphrase is incorrect', () => {
+  it('Should throw an error if passphrase is incorrect', async () => {
     const wrongPassphrase = 'terces';
 
     process.env.RSA_KEY_PASSPHRASE = wrongPassphrase;
 
-    expect(() => getKeyPair()).toThrow();
+    await expect(() => getKeyPair()).rejects.toThrow();
   });
 
-  it('Should generate KeyPair object', () => {
-    const keypair = getKeyPair();
+  it('Should generate KeyPair object', async () => {
+    const keypair = await getKeyPair();
 
     expect(keypair).toHaveProperty('privateKey');
     expect(keypair).toHaveProperty('publicKey');
   });
 
-  it('Should recycle the already generated KeyPair object', () => {
-    const keypair = getKeyPair();
-    const secondKeypair = getKeyPair();
+  it('Should recycle the already generated KeyPair object', async () => {
+    const keypair = await getKeyPair();
+    const secondKeypair = await getKeyPair();
 
     expect(keypair).toBe(secondKeypair);
   });
 
-  it('Should clean the cache', () => {
+  it('Should clean the cache', async () => {
     const spy = jest.spyOn(Buffer, 'from');
 
     getKeyPair.cleanCache();
-    getKeyPair();
+    await getKeyPair();
 
     expect(spy).toHaveBeenCalled();
   });
@@ -80,22 +80,22 @@ describe('encrypt / decrypt', () => {
     process.env.RSA_KEY_PASSPHRASE = passphrase;
   });
 
-  it('Should encrypt and decrypt information', () => {
+  it('Should encrypt and decrypt information', async () => {
     const information = 'Magna dolore ut enim deserunt et cupidatat deserunt et nulla.';
 
-    const encrypted = encrypt(Buffer.from(information));
-    const decrypted = decrypt(encrypted);
+    const encrypted = await encrypt(Buffer.from(information));
+    const decrypted = await decrypt(encrypted);
 
     expect(information).toBe(decrypted.toString('utf8'));
   });
 
-  it('Should encrypt and decrypt long information', () => {
+  it('Should encrypt and decrypt long information', async () => {
     const longInformation = Array.from({ length: 100_000 })
       .map(() => 'Ut sunt duis magna laborum occaecat cupidatat laboris Lorem velit.')
       .join('');
 
-    const encrypted = encrypt(Buffer.from(longInformation));
-    const decrypted = decrypt(encrypted);
+    const encrypted = await encrypt(Buffer.from(longInformation));
+    const decrypted = await decrypt(encrypted);
 
     expect(decrypted.toString('utf-8')).toBe(longInformation);
   });
