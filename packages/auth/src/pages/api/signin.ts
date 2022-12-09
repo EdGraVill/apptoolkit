@@ -1,6 +1,7 @@
 import Form from '@apptoolkit/form';
 import type { Credentials } from '@controllers/signIn';
 import signIn from '@controllers/signIn';
+import { setCookie } from 'cookies-next';
 import { Draft07, validateAsync } from 'json-schema-library';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -22,18 +23,19 @@ const jsonSchema = new Draft07({
   type: 'object',
 });
 
-export default async function handle(req: NextApiRequest, res: NextApiResponse<{ jwt: string }>) {
-  const isValid = await validateAsync(jsonSchema, req.body);
-
-  if (isValid.length) {
-    res.statusCode = 400;
-    return res.end();
-  }
-
-  const { email, password } = req.body as Credentials;
-
+export default async function handler(req: NextApiRequest, res: NextApiResponse<{ jwt: string }>) {
   try {
+    const body: Credentials = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    const isValid = await validateAsync(jsonSchema, body);
+
+    if (isValid.length) {
+      throw new Error(isValid.join(', '));
+    }
+
+    const { email, password } = body;
+
     const jwt = await signIn({ email, password });
+    setCookie('jwt', jwt, { req, res });
 
     return res.json({ jwt });
   } catch (error) {

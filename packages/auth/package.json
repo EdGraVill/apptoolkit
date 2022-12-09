@@ -8,16 +8,19 @@
     "keygen": "npx @apptoolkit/rsa -p secret > rsa.pem"
   },
   "dependencies": {
+    "@apptoolkit/2fa": "^0.0.19",
     "@apptoolkit/crud": "^0.0.19",
     "@apptoolkit/form": "^0.0.19",
     "@apptoolkit/jwt": "^0.0.19",
     "@apptoolkit/rsa": "^0.0.19",
     "@apptoolkit/ui": "^0.0.19",
     "bcrypt": "^5.1.0",
+    "cookies-next": "^2.1.1",
     "json-schema-library": "^7.4.1",
     "mongodb": "^4.12.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "tailwind-merge": "^1.8.0"
   },
   "eslintConfig": {
     "extends": [

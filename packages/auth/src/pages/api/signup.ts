@@ -22,17 +22,18 @@ const jsonSchema = new Draft07({
   type: 'object',
 });
 
-export default async function handle(req: NextApiRequest, res: NextApiResponse<void>) {
-  const isValid = await validateAsync(jsonSchema, req.body);
-
-  if (isValid.length) {
-    res.statusCode = 400;
-    return res.end();
-  }
-
-  const { email, password } = req.body as Credentials;
-
+export default async function handler(req: NextApiRequest, res: NextApiResponse<void>) {
   try {
+    const body: Credentials = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    const isValid = await validateAsync(jsonSchema, body);
+
+    if (isValid.length) {
+      res.statusCode = 400;
+      return res.end();
+    }
+
+    const { email, password } = body as Credentials;
+
     await signUp({ email, password });
 
     return res.send();

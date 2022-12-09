@@ -60,7 +60,7 @@ export default class MongoCRUD<S extends Fields, I extends FieldsToInterface<S>,
       this.preventOutsideBoundaries(doc as I),
       // this.selfUpdater(id) as Parameters<typeof docToFind>[1],
       async (newValues: Partial<FieldsToInterface<S>>) => {
-        const { modifiedCount } = await this.collection.updateOne({ _id }, newValues);
+        const { modifiedCount } = await this.collection.updateOne({ _id }, { $set: newValues });
 
         return { updatedCount: modifiedCount };
       },

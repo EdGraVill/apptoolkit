@@ -1,4 +1,4 @@
-import { generate2FAPasscode, generate2FASecret, restore2FASecret, verify2FAPasscode } from './2fa';
+import { generate2FAPasscode, generate2FASecret, encodeBin, verify2FAPasscode } from './2fa';
 import { generateHOTP, hexToBytes, intToBytes, verifyHOTP } from './hotp';
 import { generateTOTP, verifyTOTP } from './totp';
 import { randomBytes } from 'crypto';
@@ -10,15 +10,15 @@ describe('2fs.ts', () => {
   ]);
   const knownSecret = 'VTOJODIHEB6BBKD3OTMWO5JFIZA3PPSG';
 
-  describe('restore2FASecret', () => {
+  describe('encodeBin', () => {
     it('Should throw an error if input is not a 20 bytes length binary', () => {
       const bin = randomBytes(21);
 
-      expect(() => restore2FASecret(bin)).toThrowError('Incorrect 2FA secret length');
+      expect(() => encodeBin(bin)).toThrowError('Incorrect 2FA secret length');
     });
 
     it('Should return base32 string encoded with 20 bytes length binary', () => {
-      const secret = restore2FASecret(knownBin);
+      const secret = encodeBin(knownBin);
 
       expect(secret).toBe(knownSecret);
     });
@@ -30,7 +30,7 @@ describe('2fs.ts', () => {
 
       expect(bin).toHaveLength(20);
       expect(qr).not.toBeUndefined();
-      expect(secret).toBe(restore2FASecret(bin));
+      expect(secret).toBe(encodeBin(bin));
       expect(uri).not.toBeUndefined();
     });
 

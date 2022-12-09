@@ -1,15 +1,15 @@
-import { SignIn } from '@components/screens';
+import { SignUp } from '@components/screens';
 import type { Credentials } from '@controllers/signIn';
 import Head from 'next/head';
 import { useCallback, useEffect, useRef } from 'react';
 
-export default function SignInPage() {
+export default function SignUpPage() {
   const controller = useRef(new AbortController());
 
-  const onSignIn = useCallback(async (credentials: Credentials): Promise<string> => {
+  const onSignUp = useCallback(async (credentials: Credentials): Promise<string> => {
     controller.current = new AbortController();
 
-    const request = await fetch('/api/signin', {
+    const request = await fetch('/api/signup', {
       body: JSON.stringify(credentials),
       method: 'POST',
       signal: controller.current.signal,
@@ -28,9 +28,9 @@ export default function SignInPage() {
   return (
     <>
       <Head>
-        <title>Sign In</title>
+        <title>Sign Up</title>
       </Head>
-      <SignIn onSignIn={onSignIn} />x
+      <SignUp onSignUp={onSignUp} />x
     </>
   );
 }

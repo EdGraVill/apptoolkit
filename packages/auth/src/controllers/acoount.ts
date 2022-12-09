@@ -15,6 +15,10 @@ const Account = new CRUD(
       isUnique: true,
       type: CRUD.Type.string,
     },
+    isConfirmed: {
+      defaultValue: false,
+      type: CRUD.Type.boolean,
+    },
     password: {
       isRequired: true,
       type: CRUD.Type.string,

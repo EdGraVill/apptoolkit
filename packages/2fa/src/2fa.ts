@@ -3,7 +3,15 @@ import { generateTOTP, verifyTOTP } from './totp';
 import { randomBytes } from 'crypto';
 import { encode, decode } from 'thirty-two';
 
-export function restore2FASecret(bin: Buffer) {
+export function decodeSecret(secret: string): Buffer {
+  if (secret.length !== 32) {
+    throw new Error('Incorrect 2FA secret length');
+  }
+
+  return decode(secret.replace(/\W+/g, '').toLocaleUpperCase());
+}
+
+export function encodeBin(bin: Buffer) {
   if (bin.length !== 20) {
     throw new Error('Incorrect 2FA secret length');
   }
@@ -13,7 +21,7 @@ export function restore2FASecret(bin: Buffer) {
 
 export function generate2FASecret(account?: string) {
   const bin = randomBytes(20);
-  const secret = restore2FASecret(bin);
+  const secret = encodeBin(bin);
   const appName = !!process.env.APP_NAME && process.env.APP_NAME !== 'undefined' ? process.env.APP_NAME : undefined;
 
   const uri = new URL(account ? `otpauth://totp/${appName}:${account}` : `otpauth://totp/${appName}`);
@@ -39,13 +47,13 @@ export function generate2FASecret(account?: string) {
 }
 
 export function generate2FAPasscode(secret: string | Buffer, config?: Partial<TOTPGenerateConfig>) {
-  const bin = Buffer.isBuffer(secret) ? secret : decode(secret.replace(/\W+/g, '').toLocaleUpperCase());
+  const bin = Buffer.isBuffer(secret) ? secret : decodeSecret(secret);
 
   return generateTOTP(bin, config);
 }
 
 export function verify2FAPasscode(secret: string | Buffer, token: string, config: Partial<TOTPVerifyConfig> = {}) {
-  const bin = Buffer.isBuffer(secret) ? secret : decode(secret.replace(/\W+/g, '').toLocaleUpperCase());
+  const bin = Buffer.isBuffer(secret) ? secret : decodeSecret(secret);
 
   return verifyTOTP(bin, token, { window: 4, ...config });
 }

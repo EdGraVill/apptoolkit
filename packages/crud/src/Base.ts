@@ -48,12 +48,12 @@ export interface CRUDMethods<S extends Fields, I extends FieldsToInterface<S>, F
     predicated: Partial<I>,
     projection?: P,
     // @ts-ignore
-  ): Promise<(P extends undefined ? F : Pick<F, P[number]>) | undefined>;
+  ): Promise<(P extends undefined ? F : Find<Pick<S, P[number]>>) | undefined>;
   readMany<P extends Array<keyof S> | undefined>(
     predicated: Partial<I>,
     projection?: P,
     // @ts-ignore
-  ): Promise<Array<P extends undefined ? F : Pick<F, P[number]>>>;
+  ): Promise<Array<P extends undefined ? F : Find<Pick<S, P[number]>>>>;
   update: Update<S, I>;
   updateMany: UpdateMany<S, I>;
 }
