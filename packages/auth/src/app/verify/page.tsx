@@ -3,11 +3,11 @@ import Verify from '@components/screens/Verify';
 import { cookies, headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-export default async function VerifyPage({ searchParams }: { searchParams: { jwt?: string } }) {
+export default async function VerifyPage({ params }: any) {
   const headersList = headers();
-  const { get } = cookies();
+  const { get: getCookie } = cookies();
   const authorization =
-    headersList.get('authorization')?.replace('Bearer ', '') ?? get('jwt')?.value ?? searchParams.jwt;
+    headersList.get('authorization')?.replace('Bearer ', '') ?? getCookie('jwt')?.value ?? params?.jwt;
 
   if (!authorization) {
     return redirect('/');

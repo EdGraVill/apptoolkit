@@ -5,11 +5,11 @@ import Account from '@controllers/acoount';
 import { cookies, headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-export default async function Configure({ searchParams }: { searchParams: { jwt?: string } }) {
+export default async function Configure({ params }: any) {
   const headersList = headers();
-  const { get } = cookies();
+  const { get: getCookie } = cookies();
   const authorization =
-    headersList.get('authorization')?.replace('Bearer ', '') ?? get('jwt')?.value ?? searchParams.jwt;
+    headersList.get('authorization')?.replace('Bearer ', '') ?? getCookie('jwt')?.value ?? params.jwt;
 
   if (!authorization) {
     return redirect('/');
