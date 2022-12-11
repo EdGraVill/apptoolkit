@@ -1,5 +1,5 @@
 import type { Feedback } from './validation';
-import { commonValidators, feedbackize, Severity, validate } from './validation';
+import { Severity, commonValidators, feedbackize, validate } from './validation';
 
 describe('feedbackize function', () => {
   it('Should return same undefined as provided if is a undefined input', () => {

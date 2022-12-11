@@ -1,6 +1,7 @@
+import { createContext, useContext as useReactContext } from 'react';
+
 import type { InputState } from './state';
 import type { Feedback } from './validation';
-import { createContext, useContext as useReactContext } from 'react';
 
 export interface Context {
   clearAllValues(): void;

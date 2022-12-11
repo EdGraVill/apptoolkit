@@ -1,5 +1,6 @@
-import { FullCard } from '@components/surfaces';
 import type { FC } from 'react';
+
+import { FullCard } from '@components/surfaces';
 
 const AlreadyConfigured: FC = () => (
   <FullCard>

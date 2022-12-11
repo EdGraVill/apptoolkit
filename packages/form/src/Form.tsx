@@ -1,12 +1,13 @@
+import type { FC, ReactElement } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+
 import { Context } from './context';
-import { dispatchEvent, Event } from './events';
+import { Event, dispatchEvent } from './events';
 import type { InputDefinition, InputState } from './state';
 import { compareValues, composeState, valuesFromInputDefinitions } from './state';
 import type { Signal } from './useSignal';
 import type { Feedback } from './validation';
 import { Severity } from './validation';
-import type { FC, ReactElement } from 'react';
-import { useCallback, useEffect, useState } from 'react';
 
 export interface Props {
   children?: ReactElement | ReactElement[];

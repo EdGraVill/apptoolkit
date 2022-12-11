@@ -1,5 +1,6 @@
-import useSwitch from './useSwitch';
 import { useEffect } from 'react';
+
+import useSwitch from './useSwitch';
 
 const getCurrentTheme = () => globalThis?.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false;
 

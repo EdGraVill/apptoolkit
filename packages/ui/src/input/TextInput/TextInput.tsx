@@ -1,5 +1,6 @@
 import type { Feedback } from '@apptoolkit/form';
 import Form from '@apptoolkit/form';
+
 import type { InputHTMLAttributes, KeyboardEvent } from 'react';
 import { useCallback } from 'react';
 import { forwardRef } from 'react';
@@ -36,17 +37,17 @@ const TextInput = forwardRef<HTMLInputElement, Props>(({ className, label, name,
 
         const accentColor = getSeverityColor(isDirty, feedback);
         return (
-          <label className="block font-sans group pt-2 relative">
+          <label className="group relative block pt-2 font-sans">
             {label && (
               <span
-                className={`absolute bg-white block font-semibold group-focus-within:text-${accentColor}-500 left-3 px-1 select-none text-${accentColor}-400 text-xs top-0`}
+                className={`absolute block bg-white font-semibold group-focus-within:text-${accentColor}-500 left-3 select-none px-1 text-${accentColor}-400 top-0 text-xs`}
               >
                 {label}
               </span>
             )}
             <input
               className={twMerge(
-                `block border border-${accentColor}-300 focus:border-${accentColor}-500 focus:outline-none px-4 py-2 rounded-md text-${accentColor}-900 w-full`,
+                `block border border-${accentColor}-300 focus:border-${accentColor}-500 rounded-md px-4 py-2 focus:outline-none text-${accentColor}-900 w-full`,
                 className,
               )}
               onBlur={Form.HTMLInputWrapper.mergeEventHandlers(onBlur, props.onBlur)}
@@ -58,7 +59,7 @@ const TextInput = forwardRef<HTMLInputElement, Props>(({ className, label, name,
               ref={ref}
             />
             {isDirty && (
-              <p className="text-xs text-error-500">
+              <p className="text-error-500 text-xs">
                 {feedback
                   .filter(({ severity }) => severity === Form.Severity.error)
                   .map(({ message }) => message)
@@ -66,7 +67,7 @@ const TextInput = forwardRef<HTMLInputElement, Props>(({ className, label, name,
               </p>
             )}
             {isDirty && (
-              <p className="text-xs text-warning-500">
+              <p className="text-warning-500 text-xs">
                 {feedback
                   .filter(({ severity }) => severity === Form.Severity.warning)
                   .map(({ message }) => message)
@@ -74,7 +75,7 @@ const TextInput = forwardRef<HTMLInputElement, Props>(({ className, label, name,
               </p>
             )}
             {!!feedback.filter(({ severity }) => severity === Form.Severity.info).length && (
-              <p className="text-xs text-info-500">
+              <p className="text-info-500 text-xs">
                 {feedback
                   .filter(({ severity }) => severity === Form.Severity.info)
                   .map(({ message }) => message)

@@ -3,9 +3,9 @@ import { twMerge } from 'tailwind-merge';
 
 const FullCard: FC<HTMLAttributes<HTMLDivElement>> = ({ className, ...props }) => (
   <div>
-    <div className="min-h-screen bg-white flex justify-center items-center sm:bg-transparent">
+    <div className="flex min-h-screen items-center justify-center bg-white sm:bg-transparent">
       <div
-        className={twMerge('bg-white w-full max-w-md px-14 py-10 rounded-lg sm:shadow-md align-middle', className)}
+        className={twMerge('w-full max-w-md rounded-lg bg-white px-14 py-10 align-middle sm:shadow-md', className)}
         {...props}
       />
     </div>

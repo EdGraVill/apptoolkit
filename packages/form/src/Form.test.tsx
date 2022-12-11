@@ -1,12 +1,13 @@
+import { act, render } from '@testing-library/react';
+import React from 'react';
+
 import Form from './Form';
 import { HTMLInputWrapper } from './HTMLInputWrapper';
 import type { Context } from './context';
 import { useContext } from './context';
-import { addEventListener, clearAllListeners, Event } from './events';
+import { Event, addEventListener, clearAllListeners } from './events';
 import type { InputDefinition, InputState } from './state';
 import { commonValidators, validate } from './validation';
-import { act, render } from '@testing-library/react';
-import React from 'react';
 
 const inputDefinitions: InputDefinition[] = [
   { initialValue: 'mail@test.io', name: 'email', validators: [commonValidators.isEmailBuilder('Invalid email')] },

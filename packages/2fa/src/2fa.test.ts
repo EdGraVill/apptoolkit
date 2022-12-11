@@ -1,7 +1,8 @@
-import { generate2FAPasscode, generate2FASecret, encodeBin, verify2FAPasscode } from './2fa';
+import { randomBytes } from 'crypto';
+
+import { encodeBin, generate2FAPasscode, generate2FASecret, verify2FAPasscode } from './2fa';
 import { generateHOTP, hexToBytes, intToBytes, verifyHOTP } from './hotp';
 import { generateTOTP, verifyTOTP } from './totp';
-import { randomBytes } from 'crypto';
 
 describe('2fs.ts', () => {
   const knownBin = Buffer.from([

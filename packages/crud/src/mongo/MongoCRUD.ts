@@ -1,11 +1,12 @@
+import type { Collection, Db, Document, MongoClient, ServerHeartbeatFailedEvent, WithId } from 'mongodb';
+import { ObjectId } from 'mongodb';
+
 import type { CRUDMethods } from '../Base';
 import type { Fields, FieldsToInterface } from '../field';
 import { Type } from '../field';
 import type { Find } from '../find';
 import { docToFind } from '../find';
 import type MongoConnection from './MongoConection';
-import type { Collection, MongoClient, Db, WithId, Document, ServerHeartbeatFailedEvent } from 'mongodb';
-import { ObjectId } from 'mongodb';
 
 const mapBsonTypes = {
   [Type.boolean]: 'bool',

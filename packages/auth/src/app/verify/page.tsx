@@ -1,7 +1,9 @@
 import { verifyJWT } from '@apptoolkit/jwt';
-import Verify from '@components/screens/Verify';
+
 import { cookies, headers } from 'next/headers';
 import { redirect } from 'next/navigation';
+
+import Verify from '@components/screens/Verify';
 
 export default async function VerifyPage({ params }: any) {
   const headersList = headers();

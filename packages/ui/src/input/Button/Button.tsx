@@ -10,7 +10,7 @@ interface Props extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'disabled'
 const Button = forwardRef<HTMLButtonElement, Props>(({ children, className, isDisabled, isLoading, ...props }, ref) => (
   <button
     className={twMerge(
-      'font-semibold font-sans relative px-6 py-2 border-slate-200 border-2 rounded-md text-slate-800 select-none cursor-pointer',
+      'relative cursor-pointer select-none rounded-md border-2 border-slate-200 px-6 py-2 font-sans font-semibold text-slate-800',
       isDisabled ? 'pointer-events-none' : '',
       className,
     )}
@@ -21,7 +21,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(({ children, className, isDi
     <span className={isLoading ? 'invisible' : ''}>{children}</span>
     {isLoading && (
       <span className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center">
-        <svg className="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg className="h-5 w-5 animate-spin" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
           <path
             className="opacity-75"

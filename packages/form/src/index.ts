@@ -1,9 +1,9 @@
 import Form from './Form';
 import { HTMLInputWrapper, mergeEventHandlers } from './HTMLInputWrapper';
 import { Context, defaultContextValue, useContext } from './context';
-import { addEventListener, dispatchEvent, Event } from './events';
+import { Event, addEventListener, dispatchEvent } from './events';
 import useSignal from './useSignal';
-import { commonValidators, feedbackize, patterns, Severity, validate } from './validation';
+import { Severity, commonValidators, feedbackize, patterns, validate } from './validation';
 
 export type { Feedback, ValidatorFunction } from './validation';
 export type { Signal } from './useSignal';

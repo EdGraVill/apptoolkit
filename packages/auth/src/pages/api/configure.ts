@@ -1,10 +1,12 @@
 import { decodeSecret, verify2FAPasscode } from '@apptoolkit/2fa';
 import { signJWT, verifyJWT } from '@apptoolkit/jwt';
 import { encrypt } from '@apptoolkit/rsa';
-import Account from '@controllers/acoount';
+
 import { getCookie, setCookie } from 'cookies-next';
 import { Draft07, validateAsync } from 'json-schema-library';
 import type { NextApiRequest, NextApiResponse } from 'next';
+
+import Account from '@controllers/acoount';
 
 const jsonSchema = new Draft07({
   description: 'User credentials',

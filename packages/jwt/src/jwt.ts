@@ -1,5 +1,6 @@
 import { getKeyPair } from '@apptoolkit/rsa';
-import { jwtVerify, SignJWT } from 'jose';
+
+import { SignJWT, jwtVerify } from 'jose';
 
 export type JWTPayload = {
   auth: boolean;

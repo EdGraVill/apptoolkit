@@ -1,12 +1,13 @@
-import type { Context, InputDefinition } from '../';
-import Form from '../';
-import { CancelInput, EmailInput, FirstNameInput, LastNameInput, PasswordInput, SubmitInput } from './Inputs';
-import styles from './styles.module.scss';
 import { action } from '@storybook/addon-actions';
 import { expect } from '@storybook/jest';
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import { userEvent, waitFor, within } from '@storybook/testing-library';
-import { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+
+import type { Context, InputDefinition } from '../';
+import Form from '../';
+import { CancelInput, EmailInput, FirstNameInput, LastNameInput, PasswordInput, SubmitInput } from './Inputs';
+import styles from './styles.module.scss';
 
 export default {
   component: Form,
@@ -86,9 +87,9 @@ ComplexUsage.decorators = [
     }, []);
 
     return (
-      <div className="flex items-center justify-center h-screen w-screen bg-slate-100">
-        <main className="grid grid-cols-2 gap-4 max-w-sm bg-white shadow-lg w-full px-8 py-10 rounded-lg border border-slate-300">
-          <h1 className="col-span-2 text-center text-2xl mb-4">{isSignIn ? 'Sign In' : 'Sign Up'}</h1>
+      <div className="flex h-screen w-screen items-center justify-center bg-slate-100">
+        <main className="grid w-full max-w-sm grid-cols-2 gap-4 rounded-lg border border-slate-300 bg-white px-8 py-10 shadow-lg">
+          <h1 className="col-span-2 mb-4 text-center text-2xl">{isSignIn ? 'Sign In' : 'Sign Up'}</h1>
           {isSignIn ? (
             <LoginForm args={{ ...args.args, signal }} />
           ) : (
@@ -109,9 +110,9 @@ ComplexUsage.decorators = [
               <Form.HTMLInputWrapper>{SubmitInput}</Form.HTMLInputWrapper>
             </Form>
           )}
-          <p className="text-sm mt-4">
+          <p className="mt-4 text-sm">
             Or you can{' '}
-            <button className="text-indigo-400 cursor-pointer inline-block" onClick={switchScreen}>
+            <button className="inline-block cursor-pointer text-indigo-400" onClick={switchScreen}>
               {isSignIn ? 'Sign Up' : 'Sign In'}
             </button>
           </p>

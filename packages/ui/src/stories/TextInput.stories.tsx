@@ -1,7 +1,9 @@
-import { TextInput } from '../input';
 import Form from '@apptoolkit/form';
+
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import * as React from 'react';
+
+import { TextInput } from '../input';
 
 export default {
   argTypes: {

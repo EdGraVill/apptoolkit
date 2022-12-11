@@ -1,6 +1,7 @@
-import type { KeyPair } from './getKeyPair';
-import { generateKeyPair, createPrivateKey, createPublicKey } from 'crypto';
+import { createPrivateKey, createPublicKey, generateKeyPair } from 'crypto';
 import { promisify } from 'util';
+
+import type { KeyPair } from './getKeyPair';
 
 export default async function generateKeypair(passphrase: string): Promise<KeyPair> {
   if (!passphrase) {

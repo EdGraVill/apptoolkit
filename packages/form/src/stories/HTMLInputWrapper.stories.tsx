@@ -1,6 +1,8 @@
+import type { ComponentMeta, ComponentStory } from '@storybook/react';
+import React from 'react';
+
 import Form from '../';
 import styles from './styles.module.scss';
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
 
 export default {
   component: Form.HTMLInputWrapper,

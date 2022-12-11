@@ -1,6 +1,6 @@
 import type { Fields, FieldsToInterface } from './field';
 import type { Find } from './find';
-import { MongoConnection, MongoCRUD } from './mongo';
+import { MongoCRUD, MongoConnection } from './mongo';
 
 export type Connector = MongoConnection;
 export type Driver<S extends Fields> = MongoCRUD<S, FieldsToInterface<S>, Find<S>>;

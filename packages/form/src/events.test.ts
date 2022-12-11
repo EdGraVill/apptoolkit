@@ -1,4 +1,4 @@
-import { addEventListener, clearAllListeners, dispatchEvent, Event } from './events';
+import { Event, addEventListener, clearAllListeners, dispatchEvent } from './events';
 
 describe('events', () => {
   it('Should listen for all events when is dispatched', () => {

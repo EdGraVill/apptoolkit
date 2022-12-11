@@ -1,10 +1,12 @@
-/* eslint-disable prettier/prettier */
 'use client';
+
 import { Button } from '@apptoolkit/ui/dist/input';
-import { FullCard } from '@components/surfaces';
+
 import Link from 'next/link';
 import type { ChangeEvent, FC } from 'react';
-import { useEffect, useCallback, useState, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+import { FullCard } from '@components/surfaces';
 
 const Verify: FC = () => {
   const controller = useRef(new AbortController());
@@ -47,20 +49,20 @@ const Verify: FC = () => {
   };
 
   return (
-    <FullCard className="px-0 overflow-hidden">
-      <h1 className="text-xl text-center font-semibold font-sans">Verify Account</h1>
-      <div className="w-full px-10 my-10">
-        <p className="font-sans text-center">Type your code:</p>
+    <FullCard className="overflow-hidden px-0">
+      <h1 className="text-center font-sans text-xl font-semibold">Verify Account</h1>
+      <div className="my-10 w-full px-10">
+        <p className="text-center font-sans">Type your code:</p>
         <input
-          className="block mx-auto border border-slate-400 text-4xl px-6 py-3 rounded-xl focus:outline-none my-10 text-center w-52 tracking-widest"
+          className="mx-auto my-10 block w-52 rounded-xl border border-slate-400 px-6 py-3 text-center text-4xl tracking-widest focus:outline-none"
           onChange={onChange}
           value={code}
         />
-        {error && <p className="text-rose-400 text-center">{error}</p>}
+        {error && <p className="text-center text-rose-400">{error}</p>}
       </div>
       <div className="flex flex-row-reverse justify-between px-10">
         <Button
-          className="border-0 bg-violet-500 text-white hover:bg-violet-600 transition-colors"
+          className="border-0 bg-violet-500 text-white transition-colors hover:bg-violet-600"
           isDisabled={isLoading}
           isLoading={isLoading}
           onClick={onSendCode}
@@ -68,7 +70,7 @@ const Verify: FC = () => {
           Confirm
         </Button>
         <Link href="/">
-          <Button className="border-0 text-zinc-500 hover:bg-zinc-100 hover:text-zinc-700 transition-colors">
+          <Button className="border-0 text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-700">
             Cancel
           </Button>
         </Link>

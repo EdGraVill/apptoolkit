@@ -1,8 +1,9 @@
+import Head from 'next/head';
+import { useCallback, useEffect, useRef } from 'react';
+
 import { SignUp } from '@components/screens';
 import type { Credentials } from '@controllers/signIn';
 import type { SignUpApiResponse } from '@pages/api/signup';
-import Head from 'next/head';
-import { useCallback, useEffect, useRef } from 'react';
 
 export default function SignUpPage() {
   const controller = useRef(new AbortController());

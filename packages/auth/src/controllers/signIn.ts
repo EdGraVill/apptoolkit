@@ -1,7 +1,9 @@
+import { signJWT } from '@apptoolkit/jwt';
+
+import { compare } from 'bcrypt';
+
 import type { AccountFields } from './acoount';
 import Account from './acoount';
-import { signJWT } from '@apptoolkit/jwt';
-import { compare } from 'bcrypt';
 
 export type Credentials = Pick<AccountFields, 'email' | 'password'>;
 

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import getKeyPair from './getKeyPair';
 import { privateDecrypt } from 'crypto';
+
+import getKeyPair from './getKeyPair';
 
 export default async function decrypt(data: Buffer) {
   const { privateKey } = await getKeyPair();

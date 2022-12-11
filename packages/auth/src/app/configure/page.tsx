@@ -1,9 +1,11 @@
 import { generate2FASecret } from '@apptoolkit/2fa';
 import { verifyJWT } from '@apptoolkit/jwt';
-import { AlreadyConfigured, ShowQR } from '@components/screens/Configure';
-import Account from '@controllers/acoount';
+
 import { cookies, headers } from 'next/headers';
 import { redirect } from 'next/navigation';
+
+import { AlreadyConfigured, ShowQR } from '@components/screens/Configure';
+import Account from '@controllers/acoount';
 
 export default async function Configure({ searchParams }: { searchParams: Record<string, string> }) {
   const headersList = headers();

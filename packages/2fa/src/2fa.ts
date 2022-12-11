@@ -1,7 +1,8 @@
+import { randomBytes } from 'crypto';
+import { decode, encode } from 'thirty-two';
+
 import type { TOTPGenerateConfig, TOTPVerifyConfig } from './totp';
 import { generateTOTP, verifyTOTP } from './totp';
-import { randomBytes } from 'crypto';
-import { encode, decode } from 'thirty-two';
 
 export function decodeSecret(secret: string): Buffer {
   if (secret.length !== 32) {

@@ -1,10 +1,11 @@
-import type { Context } from './context';
-import { useContext } from './context';
-import { addEventListener, Event } from './events';
-import type { Feedback } from './validation';
 import type { ChangeEvent, FocusEvent, ReactElement } from 'react';
 import { useEffect } from 'react';
 import { useCallback, useState } from 'react';
+
+import type { Context } from './context';
+import { useContext } from './context';
+import { Event, addEventListener } from './events';
+import type { Feedback } from './validation';
 
 export type HTMLInputLikeElement = HTMLInputElement | HTMLSelectElement | HTMLButtonElement | HTMLTextAreaElement;
 

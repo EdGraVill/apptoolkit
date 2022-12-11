@@ -1,6 +1,7 @@
+import { useMemo, useRef } from 'react';
+
 import type { Context } from './context';
 import { defaultContextValue } from './context';
-import { useMemo, useRef } from 'react';
 
 export type Signal = symbol & {
   sync(formContext: Context): void;

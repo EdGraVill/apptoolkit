@@ -1,7 +1,8 @@
-import { SignIn } from '@components/screens';
-import type { Credentials } from '@controllers/signIn';
 import Head from 'next/head';
 import { useCallback, useEffect, useRef } from 'react';
+
+import { SignIn } from '@components/screens';
+import type { Credentials } from '@controllers/signIn';
 
 export default function SignInPage() {
   const controller = useRef(new AbortController());
