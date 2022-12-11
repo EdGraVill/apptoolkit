@@ -27,6 +27,10 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
+        importOrder: ["^@apptoolkit/(.*)$", "<THIRD_PARTY_MODULES>", "^@(components|controllers|hooks|util|pages)/(.*)$", "^[./]"],
+        importOrderSeparation: true,
+        importOrderSortSpecifiers: true,
+        plugins: [require('prettier-plugin-tailwindcss')],
         printWidth: 120,
         singleQuote: true,
         trailingComma: 'all',

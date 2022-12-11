@@ -13,7 +13,7 @@
     "url": "git+https://github.com/EdGraVill/apptoolkit.git"
   },
   "dependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^3.3.0",
+    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
     "@typescript-eslint/eslint-plugin": "^5.35.1",
     "@typescript-eslint/parser": "^5.35.1",
     "eslint": "^8.23.0",
