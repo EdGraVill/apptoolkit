@@ -42,7 +42,7 @@ const SignIn: FC<Props> = ({ onSignIn }) => {
 
   return (
     <FullCard>
-      <h1 className="text-xl text-center font-semibold font-sans">Sign In</h1>
+      <h1 className="text-3xl text-left pl-5 py-2 font-semibold font-sans border-l-8 border-l-violet-500">Sign In</h1>
       <div className="max-w-xs mx-auto my-10 grid-cols-1 gap-y-6 grid">
         <Form inputDefinitions={inputDefinitions} onSubmit={onSubmit}>
           <TextInput label="Email" name="email" />
@@ -50,7 +50,7 @@ const SignIn: FC<Props> = ({ onSignIn }) => {
           <Form.HTMLInputWrapper>
             {({ formContext }) => (
               <Button
-                className="border-0 bg-violet-500 text-white hover:bg-violet-600 transition-colors"
+                className="border-0 bg-violet-500 text-white hover:bg-violet-500 transition-colors"
                 isDisabled={isLoading}
                 isLoading={isLoading}
                 onClick={formContext.submit}
@@ -60,12 +60,13 @@ const SignIn: FC<Props> = ({ onSignIn }) => {
             )}
           </Form.HTMLInputWrapper>
         </Form>
-        <Link href="/signup">
-          <Button className="border-0 text-zinc-500 hover:bg-zinc-100 hover:text-zinc-700 transition-colors w-full">
-            Sign Up
-          </Button>
-        </Link>
       </div>
+      <p className="text-sm text-center text-gray-500">
+        If you still don&apos;t have an accout.{' '}
+        <Link className="text-violet-600 hover:underline" href="/signup">
+          Sign Up
+        </Link>
+      </p>
     </FullCard>
   );
 };

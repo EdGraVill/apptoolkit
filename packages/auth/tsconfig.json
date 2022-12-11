@@ -28,6 +28,12 @@
       ],
       "@hooks": [
         "hooks/index.ts"
+      ],
+      "@util": [
+        "util/index.ts"
+      ],
+      "@pages/*": [
+        "pages/*"
       ]
     },
     "plugins": [

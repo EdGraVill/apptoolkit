@@ -5,11 +5,11 @@ import Account from '@controllers/acoount';
 import { cookies, headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-export default async function Configure({ params }: any) {
+export default async function Configure({ searchParams }: { searchParams: Record<string, string> }) {
   const headersList = headers();
   const { get: getCookie } = cookies();
   const authorization =
-    headersList.get('authorization')?.replace('Bearer ', '') ?? getCookie('jwt')?.value ?? params.jwt;
+    headersList.get('authorization')?.replace('Bearer ', '') ?? getCookie('jwt')?.value ?? searchParams.jwt;
 
   if (!authorization) {
     return redirect('/');
@@ -30,6 +30,7 @@ export default async function Configure({ params }: any) {
   }
 
   const { qr, secret, uri } = generate2FASecret(email);
+  console.log(secret);
 
   return <ShowQR qr={qr.toString()} secret={secret} uri={uri.toString()} />;
 }

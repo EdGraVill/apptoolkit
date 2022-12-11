@@ -15,6 +15,8 @@ const ShowQR: FC<Record<'qr' | 'secret' | 'uri', string>> = ({ qr, secret, uri }
   const [code, setCode] = useState('');
   const [isLoading, setLoadingState] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
+  
+  console.log(secret);
 
   const onChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     if (event.currentTarget.value === '' || event.currentTarget.value.match(/^[0-9]{1,6}$/)) {

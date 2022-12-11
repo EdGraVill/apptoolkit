@@ -8,6 +8,7 @@ export type Credentials = Pick<AccountFields, 'email' | 'password'>;
 export default async function signIn({ email, password }: Credentials) {
   await Account.connect();
   const account = await Account.read({ email });
+  await Account.disconnect();
 
   if (!account) {
     throw new Error('Account not found');
@@ -21,7 +22,6 @@ export default async function signIn({ email, password }: Credentials) {
   }
 
   const jwt = await signJWT({ auth: !account.secret, email, is2FAEnabled: !!account.secret });
-  await Account.disconnect();
 
   return jwt;
 }

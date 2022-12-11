@@ -1,7 +1,9 @@
 import Form from '@apptoolkit/form';
-import type { Credentials } from '@controllers/signIn';
+import type { NewAccount } from '@controllers/signUp';
 import signUp from '@controllers/signUp';
+import { APIError } from 'errors';
 import { Draft07, validateAsync } from 'json-schema-library';
+import { MongoServerError } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 const jsonSchema = new Draft07({
@@ -11,36 +13,54 @@ const jsonSchema = new Draft07({
       pattern: Form.commonValidators.patterns.email.source,
       type: 'string',
     },
+    firstName: {
+      type: 'string',
+    },
+    lastName: {
+      type: 'string',
+    },
     password: {
       minLength: 8,
       pattern: '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$',
       type: 'string',
     },
   },
-  required: ['email', 'password'],
-  title: 'Credentials',
+  required: ['email', 'firstName', 'lastName', 'password'],
+  title: 'NewAccount',
   type: 'object',
 });
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<void>) {
+export interface SignUpApiResponse {
+  error?: string;
+  jwt?: string;
+}
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse<SignUpApiResponse>) {
   try {
-    const body: Credentials = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    const body: NewAccount = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
     const isValid = await validateAsync(jsonSchema, body);
 
     if (isValid.length) {
-      res.statusCode = 400;
-      return res.end();
+      throw new APIError(400, 'Invalid new Account', isValid);
     }
 
-    const { email, password } = body as Credentials;
+    const { email, firstName, lastName, password } = body as NewAccount;
 
-    await signUp({ email, password });
+    const jwt = await signUp({ email, firstName, lastName, password });
 
-    return res.send();
+    return res.json({ jwt });
   } catch (error) {
-    if (process.env.NODE_ENV !== 'production') {
-      console.error(error);
+    if (error instanceof APIError) {
+      res.statusCode = error.code;
+      return res.json({ error: error.message });
     }
+
+    if (error instanceof MongoServerError && error.message.includes('E11000')) {
+      res.statusCode = 400;
+      return res.json({ error: 'Account already exist' });
+    }
+
+    console.error(error);
 
     res.statusCode = 500;
     res.end();

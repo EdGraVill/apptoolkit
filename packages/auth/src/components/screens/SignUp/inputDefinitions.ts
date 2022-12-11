@@ -1,8 +1,20 @@
 import type { InputDefinition } from '@apptoolkit/form';
 import Form from '@apptoolkit/form';
+import { autoFiller } from '@util';
 
 const inputDefinitions: InputDefinition[] = [
   {
+    initialValue: autoFiller('John'),
+    name: 'firstName',
+    validators: [Form.commonValidators.isRequiredBuilder('First name required')],
+  },
+  {
+    initialValue: autoFiller('Doe'),
+    name: 'lastName',
+    validators: [Form.commonValidators.isRequiredBuilder('Last name required')],
+  },
+  {
+    initialValue: autoFiller('test@mail.com'),
     name: 'email',
     validators: [
       Form.commonValidators.isRequiredBuilder('Email required'),
@@ -10,6 +22,7 @@ const inputDefinitions: InputDefinition[] = [
     ],
   },
   {
+    initialValue: autoFiller('Password1'),
     name: 'password',
     validators: [
       Form.commonValidators.isRequiredBuilder('Password required'),

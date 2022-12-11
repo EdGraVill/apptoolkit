@@ -1,12 +1,13 @@
 import { SignUp } from '@components/screens';
 import type { Credentials } from '@controllers/signIn';
+import type { SignUpApiResponse } from '@pages/api/signup';
 import Head from 'next/head';
 import { useCallback, useEffect, useRef } from 'react';
 
 export default function SignUpPage() {
   const controller = useRef(new AbortController());
 
-  const onSignUp = useCallback(async (credentials: Credentials): Promise<string> => {
+  const onSignUp = useCallback(async (credentials: Credentials): Promise<SignUpApiResponse> => {
     controller.current = new AbortController();
 
     const request = await fetch('/api/signup', {
@@ -16,7 +17,7 @@ export default function SignUpPage() {
     });
     const response = await request.json();
 
-    return response?.jwt;
+    return response;
   }, []);
 
   useEffect(() => {

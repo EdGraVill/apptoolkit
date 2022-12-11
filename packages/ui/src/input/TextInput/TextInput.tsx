@@ -6,11 +6,11 @@ import { forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 function getSeverityColor(isDirty: boolean, feedback: Feedback[]) {
-  if (!isDirty || !feedback.length) return 'gray';
-  if (feedback.find(({ severity }) => severity === Form.Severity.error)) return 'rose';
-  if (feedback.find(({ severity }) => severity === Form.Severity.warning)) return 'amber';
+  if (!isDirty || !feedback.length) return 'info';
+  if (feedback.find(({ severity }) => severity === Form.Severity.error)) return 'error';
+  if (feedback.find(({ severity }) => severity === Form.Severity.warning)) return 'warning';
 
-  return 'gray';
+  return 'info';
 }
 
 type TextInputType = 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url';
@@ -58,7 +58,7 @@ const TextInput = forwardRef<HTMLInputElement, Props>(({ className, label, name,
               ref={ref}
             />
             {isDirty && (
-              <p className="text-xs text-rose-500">
+              <p className="text-xs text-error-500">
                 {feedback
                   .filter(({ severity }) => severity === Form.Severity.error)
                   .map(({ message }) => message)
@@ -66,19 +66,21 @@ const TextInput = forwardRef<HTMLInputElement, Props>(({ className, label, name,
               </p>
             )}
             {isDirty && (
-              <p className="text-xs text-amber-500">
+              <p className="text-xs text-warning-500">
                 {feedback
                   .filter(({ severity }) => severity === Form.Severity.warning)
                   .map(({ message }) => message)
                   .join('. ')}
               </p>
             )}
-            <p className="text-xs text-gray-500">
-              {feedback
-                .filter(({ severity }) => severity === Form.Severity.info)
-                .map(({ message }) => message)
-                .join('. ')}
-            </p>
+            {!!feedback.filter(({ severity }) => severity === Form.Severity.info).length && (
+              <p className="text-xs text-info-500">
+                {feedback
+                  .filter(({ severity }) => severity === Form.Severity.info)
+                  .map(({ message }) => message)
+                  .join('. ')}
+              </p>
+            )}
           </label>
         );
       }}

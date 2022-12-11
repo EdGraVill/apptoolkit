@@ -1,11 +1,11 @@
 import CRUD, { MongoConnection } from '@apptoolkit/crud';
 
 const Connection = new MongoConnection({
-  collection: 'accounts',
-  database: 'accounts',
-  host: 'localhost',
-  password: 'secret',
-  username: 'mongoadmin',
+  collection: process.env.DB_COLLECTION ?? 'accounts',
+  database: process.env.DB_DATABASE ?? 'accounts',
+  host: process.env.DB_HOST ?? 'localhost',
+  password: process.env.DB_PASSWORD ?? 'secret',
+  username: process.env.DB_USERNAME ?? 'mongoadmin',
 });
 
 const Account = new CRUD(
@@ -15,9 +15,17 @@ const Account = new CRUD(
       isUnique: true,
       type: CRUD.Type.string,
     },
+    firstName: {
+      isRequired: true,
+      type: CRUD.Type.string,
+    },
     isConfirmed: {
       defaultValue: false,
       type: CRUD.Type.boolean,
+    },
+    lastName: {
+      isRequired: true,
+      type: CRUD.Type.string,
     },
     password: {
       isRequired: true,
