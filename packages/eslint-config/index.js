@@ -6,6 +6,9 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:typescript-sort-keys/recommended',
   ],
+  plugins: [
+    'import',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -27,7 +30,7 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
-        importOrder: ["^@apptoolkit/(.*)$", "<THIRD_PARTY_MODULES>", "^@(components|controllers|hooks|util|pages)/(.*)$", "^[./]"],
+        importOrder: ['^@apptoolkit/(.*)$', '<THIRD_PARTY_MODULES>', '^@(components|controllers|hooks|util|pages)/(.*)$', '^[./]'],
         importOrderSeparation: true,
         importOrderSortSpecifiers: true,
         plugins: [require('prettier-plugin-tailwindcss')],
@@ -36,6 +39,7 @@ module.exports = {
         trailingComma: 'all',
       },
     ],
+    'import/no-duplicates': ['error', {'considerQueryString': true}],
     'react/jsx-sort-props': 'error',
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
