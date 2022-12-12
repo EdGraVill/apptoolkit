@@ -1,5 +1,3 @@
-'use client';
-
 import type { FC, FocusEvent } from 'react';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -25,7 +23,7 @@ const URI: FC<Props> = ({ uri }) => {
   }, []);
 
   return (
-    <label className="relative mx-auto my-3 block w-4/5">
+    <label className="relative my-3 mx-14 block">
       <input
         className="w-full rounded-md border border-slate-400 bg-transparent px-3 py-2 pr-9 font-mono text-xs selection:bg-purple-300 focus:border-purple-800 focus:outline-none"
         onFocus={onFocus}

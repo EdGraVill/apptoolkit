@@ -1,38 +1,44 @@
 import { generate2FASecret } from '@apptoolkit/2fa';
-import { verifyJWT } from '@apptoolkit/jwt';
 
-import { cookies, headers } from 'next/headers';
+import Head from 'next/head';
 import { redirect } from 'next/navigation';
 
-import { AlreadyConfigured, ShowQR } from '@components/screens/Configure';
-import Account from '@controllers/acoount';
+import { AlreadyConfigured, Configure } from '@components/screens';
+import useJWT from '@hooks/server/useJWT';
+import useSessionAccount from '@hooks/server/useSessionAccount';
 
-export default async function Configure({ searchParams }: { searchParams: Record<string, string> }) {
-  const headersList = headers();
-  const { get: getCookie } = cookies();
-  const authorization =
-    headersList.get('authorization')?.replace('Bearer ', '') ?? getCookie('jwt')?.value ?? searchParams.jwt;
+export default async function ConfigurePage({ searchParams }: any) {
+  const jwt = await useJWT(searchParams.jwt);
 
-  if (!authorization) {
-    return redirect('/');
+  if (!jwt) {
+    redirect('/');
   }
 
-  const { email, is2FAEnabled } = await verifyJWT(authorization);
-
-  if (is2FAEnabled) {
-    return <AlreadyConfigured />;
+  if (jwt.is2FAEnabled) {
+    return (
+      <>
+        <Head>
+          <title>2FA Already set</title>
+        </Head>
+        <AlreadyConfigured jwt={jwt.jwt} />;
+      </>
+    );
   }
 
-  await Account.connect();
-  const account = await Account.read({ email });
-  await Account.disconnect();
+  const account = await useSessionAccount(jwt);
 
   if (!account) {
-    throw new Error('Account disabled');
+    redirect('/logout');
   }
 
-  const { qr, secret, uri } = generate2FASecret(email);
-  console.log(secret);
+  const { qr, secret, uri } = generate2FASecret(account.email);
 
-  return <ShowQR qr={qr.toString()} secret={secret} uri={uri.toString()} />;
+  return (
+    <>
+      <Head>
+        <title>Configure 2FA</title>
+      </Head>
+      <Configure qr={qr.toString()} secret={secret} uri={uri.toString()} />
+    </>
+  );
 }

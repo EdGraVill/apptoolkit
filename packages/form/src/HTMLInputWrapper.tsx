@@ -1,6 +1,5 @@
 import type { ChangeEvent, FocusEvent, ReactElement } from 'react';
-import { useEffect } from 'react';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import type { Context } from './context';
 import { useContext } from './context';
@@ -23,17 +22,29 @@ export interface InjectedInputProps extends WithoutNameInjectedInputProps {
 
 interface PropsWithoutName {
   children(injectionProps: WithoutNameInjectedInputProps): ReactElement;
+  format?:
+    | {
+        formater(value: string): string;
+        parser?(formated: string): string;
+      }
+    | undefined;
   name?: never;
 }
 
 interface PropsWithName {
   children(injectionProps: InjectedInputProps): ReactElement;
+  format?:
+    | {
+        formater(value: string): string;
+        parser?(formated: string): string;
+      }
+    | undefined;
   name: string;
 }
 
 export function HTMLInputWrapper(props: PropsWithoutName): ReturnType<PropsWithoutName['children']>;
 export function HTMLInputWrapper(props: PropsWithName): ReturnType<PropsWithName['children']>;
-export function HTMLInputWrapper({ children, name }: PropsWithoutName | PropsWithName) {
+export function HTMLInputWrapper({ children, format, name }: PropsWithoutName | PropsWithName) {
   const formContext = useContext();
   const [isDirty, setDirtyState] = useState(false);
 
@@ -41,7 +52,7 @@ export function HTMLInputWrapper({ children, name }: PropsWithoutName | PropsWit
     (event: ChangeEvent<HTMLInputLikeElement>) => {
       const value = event.currentTarget.value;
 
-      formContext.setValue(name || '', value);
+      formContext.setValue(name || '', format?.parser?.(format?.formater(value) ?? value) ?? value);
     },
     [name],
   );
@@ -88,13 +99,15 @@ export function HTMLInputWrapper({ children, name }: PropsWithoutName | PropsWit
     return (children as PropsWithoutName['children'])(propsWithoutNameToInject);
   }
 
+  const value = formContext.state[name]?.value ?? '';
+
   const propsToInject = {
     ...propsWithoutNameToInject,
     feedback: formContext.state[name]?.feedback || [],
     isDirty,
     onBlur,
     onChange,
-    value: formContext.state[name]?.value ?? '',
+    value: format?.formater ? format.formater(value) : value,
   };
 
   return children(propsToInject);

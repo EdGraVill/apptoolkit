@@ -8,7 +8,7 @@ export class APIError extends Error {
 
   private log() {
     if (process.env.NODE_ENV !== 'production') {
-      console.error(this);
+      console.error('\x1b[31m', this, '\x1b[0m');
     }
   }
 }

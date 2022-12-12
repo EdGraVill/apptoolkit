@@ -11,6 +11,7 @@
 - `DB_PASSWORD`(*Required*): Mongo database username
 - `DB_USERNAME`(*Required*): Mongo database password
 - `NEXT_PUBLIC_DEV_AUTOFILL`: If this variable is set with `"true"`, the inputs will auto fill. (Only works in non prod environments)
+- `LAYOUT`: Layout of the UI
 
 ### Flows
 

@@ -20,21 +20,14 @@
     "incremental": true,
     "baseUrl": "src",
     "paths": {
-      "@components/*": [
-        "components/*"
-      ],
-      "@controllers/*": [
-        "controllers/*"
-      ],
-      "@hooks": [
-        "hooks/index.ts"
-      ],
-      "@util": [
-        "util/index.ts"
-      ],
-      "@pages/*": [
-        "pages/*"
-      ]
+      "@app/*": ["app/*"],
+      "@api/*": ["pages/api/*"],
+      "@components/*": ["components/*"],
+      "@controllers/*": ["controllers/*"],
+      "@handlers": ["handlers/index.ts"],
+      "@hooks": ["hooks/index.ts"],
+      "@hooks/server/*": ["hooks/*.server.ts"],
+      "@util": ["util/index.ts"]
     },
     "plugins": [
       {

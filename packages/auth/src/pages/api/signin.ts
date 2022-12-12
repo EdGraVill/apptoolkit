@@ -1,6 +1,7 @@
 import Form from '@apptoolkit/form';
 
 import { setCookie } from 'cookies-next';
+import { APIError } from 'errors';
 import { Draft07, validateAsync } from 'json-schema-library';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -25,7 +26,12 @@ const jsonSchema = new Draft07({
   type: 'object',
 });
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<{ jwt: string }>) {
+export interface SignInApiResponse {
+  error?: string;
+  jwt?: string;
+}
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse<SignInApiResponse>) {
   try {
     const body: Credentials = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
     const isValid = await validateAsync(jsonSchema, body);
@@ -41,9 +47,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     return res.json({ jwt });
   } catch (error) {
-    if (process.env.NODE_ENV !== 'production') {
-      console.error(error);
+    if (error instanceof APIError) {
+      res.statusCode = error.code;
+      return res.json({ error: error.message });
     }
+
+    console.error(error);
 
     res.statusCode = 500;
     res.end();

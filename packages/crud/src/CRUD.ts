@@ -10,7 +10,7 @@ export default class CRUD<S extends Fields> implements CRUDMethods<S, FieldsToIn
 
   private readonly driver: Driver<S>;
 
-  constructor(private readonly fields: S, private readonly connection: Connector) {
+  constructor(public readonly fields: S, private readonly connection: Connector) {
     this.driver = loadDriver(this.fields, this.connection);
 
     this.disconnect = this.driver.disconnect.bind(this.driver);
@@ -39,3 +39,6 @@ export default class CRUD<S extends Fields> implements CRUDMethods<S, FieldsToIn
   public readonly delete: CRUDMethods<S, FieldsToInterface<S>, Find<S>>['delete'];
   public readonly deleteMany: CRUDMethods<S, FieldsToInterface<S>, Find<S>>['deleteMany'];
 }
+
+export type CRUDFields<C extends CRUD<S>, S extends Fields = Fields> = FieldsToInterface<C['fields']>;
+export type CRUDFind<C extends CRUD<S>, S extends Fields = Fields> = Find<C['fields']>;

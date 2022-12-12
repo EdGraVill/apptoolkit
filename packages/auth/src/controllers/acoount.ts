@@ -1,3 +1,4 @@
+import type { CRUDFields } from '@apptoolkit/crud';
 import CRUD, { MongoConnection } from '@apptoolkit/crud';
 
 const Connection = new MongoConnection({
@@ -40,4 +41,4 @@ const Account = new CRUD(
 
 export default Account;
 
-export type AccountFields = Parameters<typeof Account['create']>[0];
+export type AccountFields = CRUDFields<typeof Account, typeof Account['fields']>;

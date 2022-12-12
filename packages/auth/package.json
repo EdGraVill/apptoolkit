@@ -15,6 +15,7 @@
     "@apptoolkit/rsa": "^0.0.21",
     "@apptoolkit/ui": "^0.0.21",
     "bcrypt": "^5.1.0",
+    "classnames": "^2.3.2",
     "cookies-next": "^2.1.1",
     "json-schema-library": "^7.4.1",
     "mongodb": "^4.12.1",
