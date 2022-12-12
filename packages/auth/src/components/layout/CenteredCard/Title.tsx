@@ -12,7 +12,7 @@ const Title = forwardRef<HTMLHeadingElement, TitleProps>(function Title({ error,
           'w-full border-l-8 py-2 pl-5 text-left font-sans text-3xl font-semibold',
           cn({
             'border-l-error-800 text-error-800': !!error,
-            'border-l-primary-800': !error || !success,
+            'border-l-primary-800': !error && !success,
             'border-l-success-800 text-success-800': !!success,
           }),
           props.className,

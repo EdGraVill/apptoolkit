@@ -1,23 +1,24 @@
 import type { FC, HTMLAttributes } from 'react';
-import { Suspense, lazy } from 'react';
 
-import LayoutTitle from '../CenteredCard/Title';
+import Title from '../CenteredCard/Title';
 
 export interface TitleProps extends HTMLAttributes<HTMLHeadingElement> {
   error?: string;
   success?: string;
 }
 
-export const Title: FC<TitleProps> = (props) => {
-  const LoadedTitle = lazy<typeof LayoutTitle>(
-    () => import(`@components/layout/${process.env.LAYOUT ?? 'CenteredCard'}/Title`),
-  );
+export const LayoutBody: FC<TitleProps> = (props) => {
+  // const LoadedTitle = lazy<typeof Title>(
+  //   () => import(`@components/layout/${process.env.LAYOUT ?? 'CenteredCard'}/Title`),
+  // );
 
-  return (
-    <Suspense fallback={<LayoutTitle {...props} />}>
-      <LoadedTitle {...props} />
-    </Suspense>
-  );
+  // return (
+  //   <Suspense fallback={<Title {...props} />}>
+  //     <LoadedTitle {...props} />
+  //   </Suspense>
+  // );
+
+  return <Title {...props} />;
 };
 
-export default Title;
+export default LayoutBody;
