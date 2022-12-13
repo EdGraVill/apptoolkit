@@ -1,8 +1,9 @@
 import type { generate2FASecret } from '@apptoolkit/2fa';
 
-import { onConfigure } from '@handlers';
 import type { FC } from 'react';
 import { useEffect } from 'react';
+
+import { onConfigure } from '@handlers';
 
 import Configure from './Configure';
 

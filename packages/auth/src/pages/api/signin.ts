@@ -1,4 +1,5 @@
 import Form from '@apptoolkit/form';
+import type { JWTPayload } from '@apptoolkit/jwt';
 
 import { setCookie } from 'cookies-next';
 import { APIError } from 'errors';
@@ -26,10 +27,10 @@ const jsonSchema = new Draft07({
   type: 'object',
 });
 
-export interface SignInApiResponse {
+export type SignInApiResponse = {
   error?: string;
   jwt?: string;
-}
+} & Partial<JWTPayload>;
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<SignInApiResponse>) {
   try {
@@ -42,10 +43,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     const { email, password } = body;
 
-    const jwt = await signIn({ email, password });
+    const { auth, is2FAEnabled, jwt } = await signIn({ email, password });
     setCookie('jwt', jwt, { req, res });
 
-    return res.json({ jwt });
+    return res.json({ auth, email, is2FAEnabled, jwt });
   } catch (error) {
     if (error instanceof APIError) {
       res.statusCode = error.code;

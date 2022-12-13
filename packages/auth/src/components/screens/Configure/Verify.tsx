@@ -56,7 +56,7 @@ const Verify: FC<Props> = ({ error, isLoading, onCancel, onSubmit }) => (
         <Form.HTMLInputWrapper>
           {({ formContext }) => (
             <Button
-              className="border-0 bg-violet-500 text-white transition-colors hover:bg-violet-600"
+              className="border-0 bg-primary-500 text-white transition-colors hover:bg-primary-600"
               isDisabled={isLoading}
               isLoading={isLoading}
               onClick={formContext.submit}

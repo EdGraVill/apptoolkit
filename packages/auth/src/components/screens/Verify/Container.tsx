@@ -1,18 +1,18 @@
 import type { FC } from 'react';
 import { useEffect } from 'react';
 
-import { onSignIn } from '@handlers';
+import { onVerify } from '@handlers';
 
-import SignIn from './SignIn';
+import Verify from './Verify';
 
 const Container: FC = () => {
   useEffect(() => {
     return () => {
-      onSignIn.controller.abort();
+      onVerify.controller.abort();
     };
   }, []);
 
-  return <SignIn onSignIn={onSignIn} />;
+  return <Verify onVerify={onVerify} />;
 };
 
 export default Container;

@@ -43,7 +43,7 @@ const ShowQR: FC<Props> = ({ onNext, qr, uri }) => {
       <URI uri={uri.toString()} />
       <div className="my-10 flex flex-row-reverse justify-between px-14">
         <Button
-          className="border-0 bg-violet-500 text-white transition-colors hover:bg-violet-600"
+          className="border-0 bg-primary-500 text-white transition-colors hover:bg-primary-600"
           isDisabled={isLoading}
           isLoading={isLoading}
           onClick={onNext}

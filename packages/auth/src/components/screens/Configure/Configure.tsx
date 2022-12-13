@@ -1,11 +1,12 @@
 import type { generate2FASecret } from '@apptoolkit/2fa';
 import type { Context } from '@apptoolkit/form';
 
-import type { onConfigure } from '@handlers';
-import { useFleetingState, useSteper } from '@hooks';
 import { useRouter } from 'next/navigation';
 import type { FC } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
+
+import type { onConfigure } from '@handlers';
+import { useFleetingState, useSteper } from '@hooks';
 
 import ShowQR from './ShowQR';
 import Verify from './Verify';
@@ -20,7 +21,7 @@ export const Configure: FC<Props> = ({ onConfigure, qr, secret, uri }) => {
   const ref = useRef<HTMLDivElement>(null);
   const { nextStep, previousStep, step } = useSteper(2);
   const [isLoading, setLoadingState] = useState(false);
-  const [error, setError] = useFleetingState<string>(5_000);
+  const [error, setError] = useFleetingState<string>(3_000);
 
   useEffect(() => {
     if (ref.current) {

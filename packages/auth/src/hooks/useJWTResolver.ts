@@ -6,7 +6,8 @@ export default function useJWTResolver(): (jwt: string) => void {
 
   const resolve = useCallback(
     (jwt: string) => {
-      const url = new URL(process.env.ON_SIGN_IN_URL ?? 'http://localhost:3000/test');
+      console.log(process.env.NEXT_PUBLIC_ON_SIGN_IN_URL);
+      const url = new URL(process.env.NEXT_PUBLIC_ON_SIGN_IN_URL ?? 'http://localhost:3000/test');
       url.searchParams.set('jwt', jwt);
 
       push(url.toString());

@@ -1,9 +1,9 @@
-import { useJWTResolver } from '@hooks';
 import cn from 'classnames';
 import type { FC } from 'react';
 import { useEffect, useState } from 'react';
 
 import { LayoutTitle } from '@components/layout/Loader';
+import { useJWTResolver } from '@hooks';
 
 interface Props {
   jwt: string;

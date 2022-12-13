@@ -1,4 +1,4 @@
-import { deleteCookie } from 'cookies-next';
+import { deleteCookie, removeCookies } from 'cookies-next';
 import type { GetServerSideProps } from 'next';
 
 export default function SignOut() {
@@ -7,6 +7,7 @@ export default function SignOut() {
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   deleteCookie('jwt', { req, res });
+  removeCookies('jwt', { req, res });
 
   return {
     props: {},

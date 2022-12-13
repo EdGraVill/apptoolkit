@@ -2,13 +2,14 @@ import type { Context } from '@apptoolkit/form';
 import Form from '@apptoolkit/form';
 import { Button, TextInput } from '@apptoolkit/ui/dist/input';
 
-import type { onSignIn } from '@handlers';
-import { useFleetingState, useJWTResolver } from '@hooks';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import type { FC } from 'react';
 import { useCallback, useState } from 'react';
 
 import { LayoutTitle } from '@components/layout/Loader';
+import type { onSignIn } from '@handlers';
+import { useFleetingState, useJWTResolver } from '@hooks';
 
 import inputDefinitions from './inputDefinitions';
 import onSubmitHandler from './onSubmitHandler';
@@ -18,6 +19,7 @@ interface Props {
 }
 
 const SignIn: FC<Props> = ({ onSignIn }) => {
+  const { push } = useRouter();
   const resolver = useJWTResolver();
   const [isLoading, setLoadingState] = useState(false);
   const [error, setError] = useFleetingState<string>(3_000);
@@ -25,9 +27,13 @@ const SignIn: FC<Props> = ({ onSignIn }) => {
   const onSubmit = useCallback(async (context: Context) => {
     setLoadingState(true);
     try {
-      const jwt = await onSubmitHandler(context, onSignIn);
+      const { auth, is2FAEnabled, jwt } = await onSubmitHandler(context, onSignIn);
 
-      resolver(jwt);
+      if (is2FAEnabled && !auth) {
+        push('/verify');
+      } else {
+        resolver(jwt);
+      }
     } catch (error) {
       if (typeof error === 'string') {
         setError(error);
@@ -60,7 +66,7 @@ const SignIn: FC<Props> = ({ onSignIn }) => {
       </div>
       <p className="my-10 text-center text-sm text-gray-500">
         If you still don&apos;t have an accout.{' '}
-        <Link className="text-violet-600 hover:underline" href="/signup">
+        <Link className="text-primary-600 hover:underline" href="/signup">
           Sign Up
         </Link>
       </p>

@@ -1,5 +1,6 @@
 import Form from '@apptoolkit/form';
 
+import { setCookie } from 'cookies-next';
 import { APIError } from 'errors';
 import { Draft07, validateAsync } from 'json-schema-library';
 import { MongoServerError } from 'mongodb';
@@ -49,6 +50,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const { email, firstName, lastName, password } = body as NewAccount;
 
     const jwt = await signUp({ email, firstName, lastName, password });
+    setCookie('jwt', jwt, { req, res });
 
     return res.json({ jwt });
   } catch (error) {

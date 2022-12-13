@@ -1,12 +1,11 @@
 import type { Context } from '@apptoolkit/form';
 
-import type { ConfigureAPIResponse } from '@api/configure';
-import type { Configure2FA } from '@controllers/configure';
+import type { onConfigure as onConfigureHandler } from '@handlers';
 
 export default async function onSubmitHandler(
   context: Context,
   secret: string,
-  onConfigure: (credentials: Configure2FA) => Promise<ConfigureAPIResponse>,
+  onConfigure: typeof onConfigureHandler,
 ): Promise<string> {
   const isValid = context.isValid('code');
   const code = context.getValue('code');

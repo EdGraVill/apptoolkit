@@ -3,8 +3,7 @@ import { generateKeypair, getKeyPair } from '@apptoolkit/rsa';
 import { decodeJwt } from 'jose';
 
 import type { JWTPayload } from './jwt';
-import { verifyJWT } from './jwt';
-import { signJWT } from './jwt';
+import { signJWT, verifyJWT } from './jwt';
 
 describe('signJWT / verifyJWT', () => {
   const passphrase = 'secret';

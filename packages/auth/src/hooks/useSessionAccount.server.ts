@@ -1,8 +1,6 @@
 import type { CRUDFind } from '@apptoolkit/crud';
 import type { JWTPayload } from '@apptoolkit/jwt';
 
-import { redirect } from 'next/navigation';
-
 import Account from '@controllers/acoount';
 
 export default async function (
@@ -15,10 +13,6 @@ export default async function (
   await Account.connect();
   const account = await Account.read({ email: payload.email });
   await Account.disconnect();
-
-  if (!account) {
-    return redirect('/');
-  }
 
   return account;
 }

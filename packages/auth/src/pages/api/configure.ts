@@ -51,7 +51,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const jwtPayload = await verifyJWT(jwt);
 
     const newJWT = await configure(jwtPayload, body);
-
     setCookie('jwt', newJWT, { req, res });
 
     return res.json({ jwt: newJWT });

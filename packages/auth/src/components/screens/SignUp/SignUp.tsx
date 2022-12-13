@@ -2,14 +2,14 @@ import type { Context } from '@apptoolkit/form';
 import Form from '@apptoolkit/form';
 import { Button, TextInput } from '@apptoolkit/ui/dist/input';
 
-import type { onSignUp } from '@handlers';
-import { useFleetingState } from '@hooks';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import type { FC } from 'react';
 import { useCallback, useState } from 'react';
 
 import { LayoutTitle } from '@components/layout/Loader';
+import type { onSignUp } from '@handlers';
+import { useFleetingState } from '@hooks';
 
 import inputDefinitions from './inputDefinitions';
 import onSubmitHandler from './onSubmitHandler';
@@ -26,9 +26,9 @@ const SignUp: FC<Props> = ({ onSignUp }) => {
   const onSubmit = useCallback(async (context: Context) => {
     setLoadingState(true);
     try {
-      const jwt = await onSubmitHandler(context, onSignUp);
+      await onSubmitHandler(context, onSignUp);
 
-      push(`/configure?jwt=${jwt}`);
+      push(`/configure`);
     } catch (error) {
       if (typeof error === 'string') {
         setError(error);

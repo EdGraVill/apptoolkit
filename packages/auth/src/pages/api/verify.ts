@@ -1,12 +1,11 @@
-import { verify2FAPasscode } from '@apptoolkit/2fa';
-import { signJWT, verifyJWT } from '@apptoolkit/jwt';
-import { decrypt } from '@apptoolkit/rsa';
+import { verifyJWT } from '@apptoolkit/jwt';
 
 import { getCookie, setCookie } from 'cookies-next';
+import { APIError } from 'errors';
 import { Draft07, validateAsync } from 'json-schema-library';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import Account from '@controllers/acoount';
+import verify from '@controllers/verify';
 
 const jsonSchema = new Draft07({
   description: 'User credentials',
@@ -21,7 +20,12 @@ const jsonSchema = new Draft07({
   type: 'object',
 });
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<{ jwt: string }>) {
+export interface VerifyApiResponse {
+  error?: string;
+  jwt?: string;
+}
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse<VerifyApiResponse>) {
   try {
     const body: { code: string } = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
     const isValid = await validateAsync(jsonSchema, body);
@@ -36,39 +40,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       req.query.jwt?.toString();
 
     if (!jwt) {
-      throw new Error('No JWT provided');
+      throw new APIError(401, 'Unauthorized');
     }
 
-    const { email } = await verifyJWT(jwt);
+    const jwtPayload = await verifyJWT(jwt);
 
-    await Account.connect();
-    const account = await Account.read({ email });
-    await Account.disconnect();
-
-    if (!account) {
-      throw new Error('Account not found');
-    }
-
-    if (!account.secret) {
-      throw new Error('Account has not 2FA enabled');
-    }
-
-    const bin = await decrypt(account.secret.buffer as Buffer);
-
-    const response = verify2FAPasscode(bin, body.code);
-
-    if (!response) {
-      throw new Error('Verifaction code failed');
-    }
-
-    const newJWT = await signJWT({ auth: true, email, is2FAEnabled: true });
+    const newJWT = await verify(jwtPayload, body.code);
     setCookie('jwt', newJWT, { req, res });
 
     return res.json({ jwt: newJWT });
   } catch (error) {
-    if (process.env.NODE_ENV !== 'production') {
-      console.error(error);
+    if (error instanceof APIError) {
+      res.statusCode = error.code;
+      return res.json({ error: error.message });
     }
+
+    console.error(error);
 
     res.statusCode = 500;
     res.end();

@@ -1,23 +1,16 @@
-import { verifyJWT } from '@apptoolkit/jwt';
-
-import { cookies, headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-import Verify from '@components/screens/Verify';
+import { Verify } from '@components/screens';
+import useJWT from '@hooks/server/useJWT';
 
-export default async function VerifyPage({ params }: any) {
-  const headersList = headers();
-  const { get: getCookie } = cookies();
-  const authorization =
-    headersList.get('authorization')?.replace('Bearer ', '') ?? getCookie('jwt')?.value ?? params?.jwt;
+export default async function VerifyPage({ searchParams }: any) {
+  const jwt = await useJWT(searchParams.jwt);
 
-  if (!authorization) {
+  if (!jwt) {
     return redirect('/');
   }
 
-  const { is2FAEnabled } = await verifyJWT(authorization);
-
-  if (!is2FAEnabled) {
+  if (!jwt.is2FAEnabled) {
     return redirect('/configure');
   }
 
