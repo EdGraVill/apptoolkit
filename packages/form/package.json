@@ -1,6 +1,6 @@
 {
   "name": "@apptoolkit/form",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Form component",
   "author": "Eduardo Grajales Villanueva <edgravill@gmail.com>",
   "homepage": "https://github.com/EdGraVill/apptoolkit#readme",
@@ -33,7 +33,7 @@
     "react": "^18.2.0"
   },
   "devDependencies": {
-    "@apptoolkit/eslint-config": "^0.2.0",
+    "@apptoolkit/eslint-config": "^0.2.1",
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",

@@ -1,6 +1,6 @@
 {
   "name": "@apptoolkit/auth",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -8,12 +8,12 @@
     "keygen": "npx @apptoolkit/rsa -p secret > rsa.pem"
   },
   "dependencies": {
-    "@apptoolkit/2fa": "^0.2.0",
-    "@apptoolkit/crud": "^0.2.0",
-    "@apptoolkit/form": "^0.2.0",
-    "@apptoolkit/jwt": "^0.2.0",
-    "@apptoolkit/rsa": "^0.2.0",
-    "@apptoolkit/ui": "^0.2.0",
+    "@apptoolkit/2fa": "^0.2.1",
+    "@apptoolkit/crud": "^0.2.1",
+    "@apptoolkit/form": "^0.2.1",
+    "@apptoolkit/jwt": "^0.2.1",
+    "@apptoolkit/rsa": "^0.2.1",
+    "@apptoolkit/ui": "^0.2.1",
     "bcrypt": "^5.1.0",
     "classnames": "^2.3.2",
     "cookies-next": "^2.1.1",
@@ -29,7 +29,7 @@
     ]
   },
   "devDependencies": {
-    "@apptoolkit/eslint-config": "^0.2.0",
+    "@apptoolkit/eslint-config": "^0.2.1",
     "@types/bcrypt": "^5.0.0",
     "@types/node": "18.11.11",
     "@types/react": "18.0.26",
