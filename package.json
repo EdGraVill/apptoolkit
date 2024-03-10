@@ -4,9 +4,7 @@
     "packages/*"
   ],
   "scripts": {
-    "bootstrap": "lerna bootstrap",
     "create": "lerna create",
-    "postinstall": "lerna bootstrap",
     "prepublish": "lerna run build",
     "publish": "lerna publish --no-private",
     "version": "lerna version",
@@ -41,6 +39,6 @@
     "ui:publish-storybook": "lerna run publish --no-private --scope=@apptoolkit/ui"
   },
   "devDependencies": {
-    "lerna": "^5.4.3"
+    "lerna": "^8.1.2"
   }
 }
