@@ -23,7 +23,7 @@ const URI: FC<Props> = ({ uri }) => {
   }, []);
 
   return (
-    <label className="relative my-3 mx-14 block">
+    <label className="relative mx-14 my-3 block">
       <input
         className="w-full rounded-md border border-slate-400 bg-transparent px-3 py-2 pr-9 font-mono text-xs selection:bg-purple-300 focus:border-purple-800 focus:outline-none"
         onFocus={onFocus}

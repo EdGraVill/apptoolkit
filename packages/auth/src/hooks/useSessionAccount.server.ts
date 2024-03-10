@@ -5,7 +5,7 @@ import Account from '@controllers/acoount';
 
 export default async function (
   payload?: JWTPayload,
-): Promise<CRUDFind<typeof Account, typeof Account['fields']> | undefined> {
+): Promise<CRUDFind<typeof Account, (typeof Account)['fields']> | undefined> {
   if (!payload) {
     return undefined;
   }

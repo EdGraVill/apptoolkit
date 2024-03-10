@@ -41,4 +41,4 @@ const Account = new CRUD(
 
 export default Account;
 
-export type AccountFields = CRUDFields<typeof Account, typeof Account['fields']>;
+export type AccountFields = CRUDFields<typeof Account, (typeof Account)['fields']>;
