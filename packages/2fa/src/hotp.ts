@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { createHmac } from 'crypto';
+import { Buffer } from 'buffer';
+import createHmacSha1 from 'crypto-js/hmac-sha1';
+import WordArray from 'crypto-js/lib-typedarrays';
 
 export function hexToBytes(hex: string) {
   return Buffer.from(hex.match(/.{1,2}/g)?.map((h) => parseInt(h, 16)) || []);
@@ -25,9 +27,9 @@ export interface HOTPGenerateConfig {
 export function generateHOTP(key: string | Buffer, counter = 0, config: Partial<HOTPGenerateConfig> = {}): string {
   const { tokenLength } = { ...generateHOTP.defaultConfig, ...config };
 
-  const hmac = createHmac('sha1', Buffer.from(key));
+  const hmac = createHmacSha1(WordArray.create(intToBytes(counter)), WordArray.create(Buffer.from(key)));
 
-  const digest = hmac.update(intToBytes(counter)).digest('hex');
+  const digest = hmac.toString();
 
   const hex = hexToBytes(digest);
 

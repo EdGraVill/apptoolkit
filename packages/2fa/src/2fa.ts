@@ -1,15 +1,16 @@
-import { randomBytes } from 'crypto';
-import { decode, encode } from 'thirty-two';
+import { Buffer } from 'buffer';
+import WordArray from 'crypto-js/lib-typedarrays';
 
 import type { TOTPGenerateConfig, TOTPVerifyConfig } from './totp';
 import { generateTOTP, verifyTOTP } from './totp';
+import { decodeBase32, encodeBase32 } from './base32';
 
 export function decodeSecret(secret: string): Buffer {
   if (secret.length !== 32) {
     throw new Error('Incorrect 2FA secret length');
   }
 
-  return decode(secret.replace(/\W+/g, '').toLocaleUpperCase());
+  return decodeBase32(secret.replace(/\W+/g, '').toLocaleUpperCase());
 }
 
 export function encodeBin(bin: Buffer) {
@@ -17,11 +18,11 @@ export function encodeBin(bin: Buffer) {
     throw new Error('Incorrect 2FA secret length');
   }
 
-  return encode(bin).toString('utf8');
+  return encodeBase32(bin).toString('utf8');
 }
 
 export function generate2FASecret(account?: string) {
-  const bin = randomBytes(20);
+  const bin = Buffer.from(WordArray.random(20).toString(), 'hex');
   const secret = encodeBin(bin);
   const appName = !!process.env.APP_NAME && process.env.APP_NAME !== 'undefined' ? process.env.APP_NAME : undefined;
 

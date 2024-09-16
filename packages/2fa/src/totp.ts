@@ -1,3 +1,5 @@
+import type { Buffer } from 'buffer';
+
 import type { HOTPGenerateConfig, HOTPVerifyConfig } from './hotp';
 import { generateHOTP, verifyHOTP } from './hotp';
 

@@ -1,8 +1,10 @@
 import { randomBytes } from 'crypto';
+import { Buffer } from 'buffer';
 
 import { encodeBin, generate2FAPasscode, generate2FASecret, verify2FAPasscode } from './2fa';
 import { generateHOTP, hexToBytes, intToBytes, verifyHOTP } from './hotp';
 import { generateTOTP, verifyTOTP } from './totp';
+import { decodeBase32, encodeBase32 } from './base32';
 
 describe('2fs.ts', () => {
   const knownBin = Buffer.from([
@@ -354,6 +356,41 @@ describe('totp.ts', () => {
       const result = verifyTOTP(stringKey, code);
 
       expect(result).toBeNull();
+    });
+  });
+
+  describe('Base32', () => {
+    it('should encode', () => {
+      expect(encodeBase32('a').toString()).toBe('ME======');
+      expect(encodeBase32('be').toString()).toBe('MJSQ====');
+      expect(encodeBase32('bee').toString()).toBe('MJSWK===');
+      expect(encodeBase32('beer').toString()).toBe('MJSWK4Q=');
+      expect(encodeBase32('beers').toString()).toBe('MJSWK4TT');
+      expect(encodeBase32('beers 1').toString()).toBe('MJSWK4TTEAYQ====');
+      expect(encodeBase32('shockingly dismissed').toString()).toBe('ONUG6Y3LNFXGO3DZEBSGS43NNFZXGZLE');
+    });
+
+    it('should decode', () => {
+      expect(decodeBase32('ME======').toString()).toBe('a');
+      expect(decodeBase32('MJSQ====').toString()).toBe('be');
+      expect(decodeBase32('ONXW4===').toString()).toBe('son');
+      expect(decodeBase32('MJSWK===').toString()).toBe('bee');
+      expect(decodeBase32('MJSWK4Q=').toString()).toBe('beer');
+      expect(decodeBase32('MJSWK4TT').toString()).toBe('beers');
+      expect(decodeBase32('mjswK4TT').toString()).toBe('beers');
+      expect(decodeBase32('MJSWK4TTN5XA====').toString()).toBe('beerson');
+      expect(decodeBase32('MJSWK4TTEAYQ====').toString()).toBe('beers 1');
+      expect(decodeBase32('ONUG6Y3LNFXGO3DZEBSGS43NNFZXGZLE').toString()).toBe('shockingly dismissed');
+    });
+
+    it('should be binary safe', () => {
+      expect(decodeBase32(encodeBase32(Buffer.from([0x00, 0xff, 0x88]))).toString('hex')).toBe('00ff88');
+      expect(
+        encodeBase32(Buffer.from('f61e1f998d69151de8334dbe753ab17ae831c13849a6aecd95d0a4e5dc25', 'hex')).toString(),
+      ).toBe('6YPB7GMNNEKR32BTJW7HKOVRPLUDDQJYJGTK5TMV2CSOLXBF');
+      expect(decodeBase32('6YPB7GMNNEKR32BTJW7HKOVRPLUDDQJYJGTK5TMV2CSOLXBF').toString('hex')).toBe(
+        'f61e1f998d69151de8334dbe753ab17ae831c13849a6aecd95d0a4e5dc25',
+      );
     });
   });
 });
