@@ -1,6 +1,6 @@
 {
   "name": "@apptoolkit/rsa",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "RSA utils",
   "author": "Eduardo Grajales Villanueva <edgravill@gmail.com>",
   "homepage": "https://github.com/EdGraVill/apptoolkit#readme",
@@ -30,7 +30,7 @@
     "generatePrivateKey": "./bin/generatePrivateKey.js"
   },
   "devDependencies": {
-    "@apptoolkit/eslint-config": "^0.3.0",
+    "@apptoolkit/eslint-config": "^0.4.0",
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-typescript": "^7.18.6",
