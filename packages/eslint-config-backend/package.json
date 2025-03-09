@@ -1,0 +1,26 @@
+{
+  "name": "@apptoolkit/eslint-config-backend",
+  "version": "0.4.0",
+  "description": "Eslint and Prettier common config for backend",
+  "author": "Eduardo Grajales Villanueva <edgravill@gmail.com>",
+  "homepage": "https://github.com/EdGraVill/apptoolkit",
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EdGraVill/apptoolkit.git"
+  },
+  "dependencies": {
+    "@trivago/prettier-plugin-sort-imports": "4.3.0",
+    "@typescript-eslint/eslint-plugin": "7.1.1",
+    "@typescript-eslint/parser": "7.1.1",
+    "eslint": "8.57.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-import": "2.29.1",
+    "eslint-plugin-prettier": "5.1.3",
+    "eslint-plugin-typescript-sort-keys": "3.2.0",
+    "prettier": "3.2.4"
+  }
+}
