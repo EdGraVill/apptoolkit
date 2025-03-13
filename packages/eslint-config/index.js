@@ -33,7 +33,7 @@ module.exports = {
         importOrder: ['<THIRD_PARTY_MODULES>', '^[./]'],
         importOrderSeparation: true,
         importOrderSortSpecifiers: true,
-        plugins: ['prettier-plugin-tailwindcss'],
+        plugins: [require.resolve('prettier-plugin-tailwindcss')],
         printWidth: 120,
         singleQuote: true,
         trailingComma: 'all',
