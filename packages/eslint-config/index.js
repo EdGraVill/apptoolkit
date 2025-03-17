@@ -30,7 +30,7 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
-        importOrder: ['<THIRD_PARTY_MODULES>', '^[./]'],
+        importOrder: ['<THIRD_PARTY_MODULES>', '^(@/|[./])'],
         importOrderSeparation: true,
         importOrderSortSpecifiers: true,
         plugins: [require.resolve('prettier-plugin-tailwindcss'), require.resolve('@trivago/prettier-plugin-sort-imports')],
