@@ -1,10 +1,8 @@
 import type { Context } from '@apptoolkit/form';
 import Form from '@apptoolkit/form';
 import { Button, TextInput } from '@apptoolkit/ui/dist/input';
-
-import type { FC } from 'react';
-
 import { LayoutTitle } from '@components/layout/Loader';
+import type { FC } from 'react';
 
 const inputDefinitions = [
   {

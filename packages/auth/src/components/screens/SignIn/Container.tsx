@@ -1,7 +1,6 @@
+import { onSignIn } from '@handlers';
 import type { FC } from 'react';
 import { useEffect } from 'react';
-
-import { onSignIn } from '@handlers';
 
 import SignIn from './SignIn';
 

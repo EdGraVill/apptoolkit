@@ -2,7 +2,6 @@ import { decodeSecret, verify2FAPasscode } from '@apptoolkit/2fa';
 import type { JWTPayload } from '@apptoolkit/jwt';
 import { signJWT } from '@apptoolkit/jwt';
 import { encrypt } from '@apptoolkit/rsa';
-
 import { APIError } from 'errors';
 
 import Account from './acoount';

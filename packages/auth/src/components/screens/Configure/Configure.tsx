@@ -1,12 +1,10 @@
 import type { generate2FASecret } from '@apptoolkit/2fa';
 import type { Context } from '@apptoolkit/form';
-
+import type { onConfigure } from '@handlers';
+import { useFleetingState, useSteper } from '@hooks';
 import { useRouter } from 'next/navigation';
 import type { FC } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
-
-import type { onConfigure } from '@handlers';
-import { useFleetingState, useSteper } from '@hooks';
 
 import ShowQR from './ShowQR';
 import Verify from './Verify';

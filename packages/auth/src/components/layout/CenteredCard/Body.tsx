@@ -1,8 +1,7 @@
+import { FullCard } from '@components/surfaces';
 import type { HTMLAttributes } from 'react';
 import { forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
-
-import { FullCard } from '@components/surfaces';
 
 const Body = forwardRef<HTMLBodyElement, HTMLAttributes<HTMLBodyElement>>(function Body(
   { className, children, ...props },

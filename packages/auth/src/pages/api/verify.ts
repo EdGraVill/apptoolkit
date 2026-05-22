@@ -1,11 +1,9 @@
 import { verifyJWT } from '@apptoolkit/jwt';
-
+import verify from '@controllers/verify';
 import { getCookie, setCookie } from 'cookies-next';
 import { APIError } from 'errors';
 import { Draft07, validateAsync } from 'json-schema-library';
 import type { NextApiRequest, NextApiResponse } from 'next';
-
-import verify from '@controllers/verify';
 
 const jsonSchema = new Draft07({
   description: 'User credentials',

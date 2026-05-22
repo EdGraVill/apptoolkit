@@ -1,13 +1,11 @@
 import Form from '@apptoolkit/form';
 import type { JWTPayload } from '@apptoolkit/jwt';
-
+import type { Credentials } from '@controllers/signIn';
+import signIn from '@controllers/signIn';
 import { setCookie } from 'cookies-next';
 import { APIError } from 'errors';
 import { Draft07, validateAsync } from 'json-schema-library';
 import type { NextApiRequest, NextApiResponse } from 'next';
-
-import type { Credentials } from '@controllers/signIn';
-import signIn from '@controllers/signIn';
 
 const jsonSchema = new Draft07({
   description: 'User credentials',

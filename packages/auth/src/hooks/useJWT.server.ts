@@ -1,6 +1,5 @@
 import type { JWTPayload } from '@apptoolkit/jwt';
 import { verifyJWT } from '@apptoolkit/jwt';
-
 import { cookies, headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 

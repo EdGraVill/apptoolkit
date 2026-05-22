@@ -1,6 +1,5 @@
 import type { CRUDFind } from '@apptoolkit/crud';
 import type { JWTPayload } from '@apptoolkit/jwt';
-
 import Account from '@controllers/acoount';
 
 export default async function (

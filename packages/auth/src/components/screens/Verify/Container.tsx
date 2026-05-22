@@ -1,7 +1,6 @@
+import { onVerify } from '@handlers';
 import type { FC } from 'react';
 import { useEffect } from 'react';
-
-import { onVerify } from '@handlers';
 
 import Verify from './Verify';
 

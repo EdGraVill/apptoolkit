@@ -1,9 +1,9 @@
-import Head from 'next/head';
-import { redirect } from 'next/navigation';
-
 import { SignIn } from '@components/screens';
 import useJWT from '@hooks/server/useJWT';
 import useSessionAccount from '@hooks/server/useSessionAccount';
+import Head from 'next/head';
+import { redirect } from 'next/navigation';
+
 import type { PageComponent } from '../../.next/types/app/page';
 
 export default async function SignUpPage({ searchParams }: Parameters<PageComponent>[0]) {

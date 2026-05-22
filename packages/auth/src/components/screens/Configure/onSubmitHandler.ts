@@ -1,5 +1,4 @@
 import type { Context } from '@apptoolkit/form';
-
 import type { onConfigure as onConfigureHandler } from '@handlers';
 
 export default async function onSubmitHandler(

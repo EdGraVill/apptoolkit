@@ -1,13 +1,11 @@
 import Form from '@apptoolkit/form';
-
+import type { NewAccount } from '@controllers/signUp';
+import signUp from '@controllers/signUp';
 import { setCookie } from 'cookies-next';
 import { APIError } from 'errors';
 import { Draft07, validateAsync } from 'json-schema-library';
 import { MongoServerError } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next';
-
-import type { NewAccount } from '@controllers/signUp';
-import signUp from '@controllers/signUp';
 
 const jsonSchema = new Draft07({
   description: 'User credentials',

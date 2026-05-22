@@ -1,12 +1,10 @@
 import { verifyJWT } from '@apptoolkit/jwt';
-
+import type { Configure2FA } from '@controllers/configure';
+import configure from '@controllers/configure';
 import { getCookie, setCookie } from 'cookies-next';
 import { APIError } from 'errors';
 import { Draft07, validateAsync } from 'json-schema-library';
 import type { NextApiRequest, NextApiResponse } from 'next';
-
-import type { Configure2FA } from '@controllers/configure';
-import configure from '@controllers/configure';
 
 const jsonSchema = new Draft07({
   description: 'User credentials',

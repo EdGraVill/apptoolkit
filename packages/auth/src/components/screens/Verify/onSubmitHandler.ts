@@ -1,5 +1,4 @@
 import type { Context } from '@apptoolkit/form';
-
 import type { onVerify as onVerifyHandler } from '@handlers';
 
 export default async function onSubmitHandler(context: Context, onVerify: typeof onVerifyHandler): Promise<string> {

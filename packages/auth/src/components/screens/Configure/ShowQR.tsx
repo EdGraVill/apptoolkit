@@ -1,11 +1,9 @@
 import { Button } from '@apptoolkit/ui/dist/input';
-
+import { LayoutTitle } from '@components/layout/Loader';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { FC } from 'react';
 import { useCallback, useState } from 'react';
-
-import { LayoutTitle } from '@components/layout/Loader';
 
 import URI from './URI';
 

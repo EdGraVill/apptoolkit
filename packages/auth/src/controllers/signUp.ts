@@ -1,5 +1,4 @@
 import { signJWT } from '@apptoolkit/jwt';
-
 import { hash } from 'bcrypt';
 
 import type { AccountFields } from './acoount';

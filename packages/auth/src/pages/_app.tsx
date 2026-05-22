@@ -1,6 +1,5 @@
-import type { AppProps } from 'next/app';
-
 import { useTheme } from '@hooks';
+import type { AppProps } from 'next/app';
 
 import '../styles/globals.css';
 

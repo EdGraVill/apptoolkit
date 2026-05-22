@@ -1,6 +1,5 @@
 import type { JWTPayload } from '@apptoolkit/jwt';
 import { signJWT } from '@apptoolkit/jwt';
-
 import { compare } from 'bcrypt';
 import { APIError } from 'errors';
 

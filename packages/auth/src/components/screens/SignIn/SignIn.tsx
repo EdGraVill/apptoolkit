@@ -1,15 +1,13 @@
 import type { Context } from '@apptoolkit/form';
 import Form from '@apptoolkit/form';
 import { Button, TextInput } from '@apptoolkit/ui/dist/input';
-
+import { LayoutTitle } from '@components/layout/Loader';
+import type { onSignIn } from '@handlers';
+import { useFleetingState, useJWTResolver } from '@hooks';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import type { FC } from 'react';
 import { useCallback, useState } from 'react';
-
-import { LayoutTitle } from '@components/layout/Loader';
-import type { onSignIn } from '@handlers';
-import { useFleetingState, useJWTResolver } from '@hooks';
 
 import inputDefinitions from './inputDefinitions';
 import onSubmitHandler from './onSubmitHandler';

@@ -1,6 +1,5 @@
 import type { InputDefinition } from '@apptoolkit/form';
 import Form from '@apptoolkit/form';
-
 import { autoFiller } from '@util';
 
 const inputDefinitions: InputDefinition[] = [

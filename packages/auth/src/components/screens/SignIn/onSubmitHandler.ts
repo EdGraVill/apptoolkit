@@ -1,6 +1,5 @@
-import type { Context } from '@apptoolkit/form';
-
 import type { SignInApiResponse } from '@api/signin';
+import type { Context } from '@apptoolkit/form';
 import type { onSignIn as onSignInHandler } from '@handlers';
 
 export default async function onSubmitHandler(

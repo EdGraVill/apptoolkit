@@ -1,5 +1,4 @@
 import type { Context } from '@apptoolkit/form';
-
 import type { onSignUp as onSignUpHandler } from '@handlers';
 
 export default async function onSubmitHandler(context: Context, onSignUp: typeof onSignUpHandler): Promise<string> {
