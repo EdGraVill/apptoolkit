@@ -1,13 +1,15 @@
 import { Event, addEventListener, clearAllListeners, dispatchEvent } from './events';
 
+const events = Object.values(Event).filter((value): value is Event => typeof value === 'number');
+
 describe('events', () => {
   it('Should listen for all events when is dispatched', () => {
-    Object.keys(Event).forEach((event) => {
+    events.forEach((event) => {
       const listener = jest.fn();
       const payload = { name: 'test' };
-      const removeListener = addEventListener(Event[event], listener);
+      const removeListener = addEventListener(event, listener);
 
-      dispatchEvent(Event[event], payload);
+      dispatchEvent(event, payload);
 
       expect(listener).toHaveBeenCalledTimes(1);
       expect(listener).toBeCalledWith(payload);
@@ -17,14 +19,14 @@ describe('events', () => {
   });
 
   it('Should listen for all events when is dispatched and stop listen when was removed', () => {
-    Object.keys(Event).forEach((event) => {
+    events.forEach((event) => {
       const listener = jest.fn();
       const payload = { name: 'test' };
-      const removeListener = addEventListener(Event[event], listener);
+      const removeListener = addEventListener(event, listener);
 
-      dispatchEvent(Event[event], payload);
+      dispatchEvent(event, payload);
       removeListener();
-      dispatchEvent(Event[event], payload);
+      dispatchEvent(event, payload);
 
       expect(listener).toHaveBeenCalledTimes(1);
       expect(listener).toBeCalledWith(payload);
@@ -34,19 +36,19 @@ describe('events', () => {
 
 describe('clearAllListeners', () => {
   it('Should clear all different listeners if no specific listener is set as input', () => {
-    const listeners = Object.keys(Event).map((event) => {
+    const listeners = events.map((event) => {
       const listener = jest.fn();
 
-      addEventListener(Event[event], listener);
+      addEventListener(event, listener);
 
-      dispatchEvent(Event[event], {});
+      dispatchEvent(event, {} as never);
 
       return listener;
     });
 
     clearAllListeners();
 
-    Object.keys(Event).forEach((event) => dispatchEvent(Event[event], {}));
+    events.forEach((event) => dispatchEvent(event, {} as never));
 
     listeners.forEach((listener) => {
       expect(listener).toHaveBeenCalledTimes(1);
@@ -54,19 +56,19 @@ describe('clearAllListeners', () => {
   });
 
   it('Should clear all specific listener set as input', () => {
-    const listeners = Object.keys(Event).map((event) => {
+    const listeners = events.map((event) => {
       const listener = jest.fn();
 
-      addEventListener(Event[event], listener);
+      addEventListener(event, listener);
 
-      dispatchEvent(Event[event], {});
+      dispatchEvent(event, {} as never);
 
-      return Object.assign(listener, { event: Event[event] });
+      return Object.assign(listener, { event });
     });
     const listenerToClear = Event.set;
     clearAllListeners(listenerToClear);
 
-    Object.keys(Event).forEach((event) => dispatchEvent(Event[event], {}));
+    events.forEach((event) => dispatchEvent(event, {} as never));
 
     listeners.forEach((listener) => {
       if (listener.event === listenerToClear) {
@@ -79,7 +81,7 @@ describe('clearAllListeners', () => {
     const listenersToClear = [Event.clear, Event.clearAll, Event.get];
     clearAllListeners(listenersToClear);
 
-    Object.keys(Event).forEach((event) => dispatchEvent(Event[event], {}));
+    events.forEach((event) => dispatchEvent(event, {} as never));
 
     listeners.forEach((listener) => {
       if (listener.event === listenerToClear) {

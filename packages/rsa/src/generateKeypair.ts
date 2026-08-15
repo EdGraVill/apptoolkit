@@ -23,7 +23,8 @@ export default async function generateKeypair(passphrase: string): Promise<KeyPa
   });
 
   const privateKey = createPrivateKey({ key: Buffer.from(stringKey), passphrase: passphrase });
-  const publicKey = createPublicKey({ key: Buffer.from(privateKey.export({ format: 'pem', type: 'pkcs8' })) });
+  const privateKeyPem = privateKey.export({ format: 'pem', type: 'pkcs8' }).toString();
+  const publicKey = createPublicKey(privateKeyPem);
 
   return {
     privateKey,

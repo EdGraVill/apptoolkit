@@ -197,14 +197,14 @@ OnSubmitHandling.play = async ({ canvasElement }) => {
   userEvent.clear(emailInput);
   userEvent.click(passwordInput);
 
-  await waitFor(() => expect(canvas.queryByText('Email required')).toBeInTheDocument());
+  await waitFor(() => expect(canvas.queryByText('Email required')).not.toBeNull());
 
   await userEvent.type(emailInput, values.email);
   await userEvent.type(passwordInput, values.password);
 
   userEvent.click(submitButton);
 
-  await waitFor(() => expect(canvas.queryByText(JSON.stringify(values))).toBeInTheDocument());
+  await waitFor(() => expect(canvas.queryByText(JSON.stringify(values))).not.toBeNull());
 };
 
 export const EventListenerHandling = Template.bind({});
@@ -288,7 +288,7 @@ SignalHandling.play = async (ctx) => {
 
     await waitFor(() => expect(emailInput.value).toBe(''));
     await waitFor(() => expect(passwordInput.value).toBe(''));
-    await waitFor(() => expect(canvas.queryByText('Email required')).not.toBeInTheDocument());
-    await waitFor(() => expect(canvas.queryByText('Password required')).not.toBeInTheDocument());
+    await waitFor(() => expect(canvas.queryByText('Email required')).toBeNull());
+    await waitFor(() => expect(canvas.queryByText('Password required')).toBeNull());
   }
 };

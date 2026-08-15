@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2017",
     "lib": [
       "dom",
       "dom.iterable",
@@ -13,21 +13,39 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "src",
     "paths": {
-      "@app/*": ["app/*"],
-      "@api/*": ["pages/api/*"],
-      "@components/*": ["components/*"],
-      "@controllers/*": ["controllers/*"],
-      "@handlers": ["handlers/index.ts"],
-      "@hooks": ["hooks/index.ts"],
-      "@hooks/server/*": ["hooks/*.server.ts"],
-      "@util": ["util/index.ts"]
+      "@app/*": [
+        "./src/app/*"
+      ],
+      "@api/*": [
+        "./src/pages/api/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@controllers/*": [
+        "./src/controllers/*"
+      ],
+      "@handlers": [
+        "./src/handlers/index.ts"
+      ],
+      "@hooks": [
+        "./src/hooks/index.ts"
+      ],
+      "@hooks/server/*": [
+        "./src/hooks/*.server.ts"
+      ],
+      "@util": [
+        "./src/util/index.ts"
+      ],
+      "errors": [
+        "./src/errors.ts"
+      ]
     },
     "plugins": [
       {
@@ -37,11 +55,13 @@
   },
   "include": [
     "next-env.d.ts",
+    "**/*.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist"
   ]
 }

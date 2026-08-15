@@ -2,10 +2,14 @@ import { Verify } from '@components/screens';
 import useJWT from '@hooks/server/useJWT';
 import { redirect } from 'next/navigation';
 
-import type { PageComponent } from '../../../.next/types/app/page';
+interface PageProps {
+  searchParams?: {
+    jwt?: string;
+  };
+}
 
-export default async function VerifyPage({ searchParams }: Parameters<PageComponent>[0]) {
-  const jwt = await useJWT(searchParams.jwt);
+export default async function VerifyPage({ searchParams }: PageProps) {
+  const jwt = await useJWT(searchParams?.jwt);
 
   if (!jwt) {
     return redirect('/');

@@ -31,11 +31,11 @@ async function getKeyPair() {
     throw new Error(''); // TODO
   }
 
-  const bufferPrivateKey = Buffer.from(stringPrivateKey);
-
   try {
-    const privateKey = createPrivateKey({ key: bufferPrivateKey, passphrase: passphrase });
-    const publicKey = createPublicKey({ key: Buffer.from(privateKey.export({ format: 'pem', type: 'pkcs8' })) });
+    const privateKey = createPrivateKey({ key: stringPrivateKey, passphrase: passphrase });
+    const exportedPrivateKey = privateKey.export({ format: 'pem', type: 'pkcs8' }) as unknown;
+    const privateKeyPem: string = typeof exportedPrivateKey === 'string' ? exportedPrivateKey : String(exportedPrivateKey);
+    const publicKey = createPublicKey(privateKeyPem as any);
 
     keypair.privateKey = privateKey;
     keypair.publicKey = publicKey;

@@ -19,7 +19,7 @@ export default async function verify({ email }: JWTPayload, code: string): Promi
     throw new APIError(401, 'Account has not 2FA enabled');
   }
 
-  const bin = await decrypt(account.secret.buffer as Buffer);
+  const bin = await decrypt(Buffer.from(account.secret.buffer as unknown as ArrayBuffer));
 
   const response = verify2FAPasscode(bin, code);
 

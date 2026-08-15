@@ -103,6 +103,7 @@
   "exclude": [
     "**/*.test.*",
     "**/*.config.*",
-    "src/stories/**/*"
+    "src/stories/**/*",
+    "dist"
   ]
 }

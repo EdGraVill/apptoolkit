@@ -84,7 +84,9 @@ describe('signJWT / verifyJWT', () => {
     const claim = await verifyJWT(jwt);
 
     Object.keys(payload).forEach((key) => {
-      expect(claim).toHaveProperty(key, payload[key]);
+      const typedKey = key as keyof JWTPayload;
+      expect(claim).toHaveProperty(key, payload[typedKey]);
+      expect(claim[typedKey]).toBe(payload[typedKey]);
     });
   });
 
@@ -95,7 +97,9 @@ describe('signJWT / verifyJWT', () => {
     const claim = await verifyJWT(jwt);
 
     Object.keys(payload).forEach((key) => {
-      expect(claim).toHaveProperty(key, payload[key]);
+      const typedKey = key as keyof JWTPayload;
+      expect(claim).toHaveProperty(key, payload[typedKey]);
+      expect(claim[typedKey]).toBe(payload[typedKey]);
     });
   });
 });

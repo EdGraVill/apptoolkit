@@ -4,10 +4,14 @@ import useSessionAccount from '@hooks/server/useSessionAccount';
 import Head from 'next/head';
 import { redirect } from 'next/navigation';
 
-import type { PageComponent } from '../../.next/types/app/page';
+interface PageProps {
+  searchParams?: {
+    jwt?: string;
+  };
+}
 
-export default async function SignUpPage({ searchParams }: Parameters<PageComponent>[0]) {
-  const jwt = await useJWT(searchParams.jwt);
+export default async function SignUpPage({ searchParams }: PageProps) {
+  const jwt = await useJWT(searchParams?.jwt);
   const account = await useSessionAccount(jwt);
 
   if (account && jwt?.jwt) {

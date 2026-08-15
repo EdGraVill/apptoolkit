@@ -1,19 +1,18 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Buffer } from 'buffer';
 import createHmacSha1 from 'crypto-js/hmac-sha1';
 import WordArray from 'crypto-js/lib-typedarrays';
 
 export function hexToBytes(hex: string) {
-  return Buffer.from(hex.match(/.{1,2}/g)?.map((h) => parseInt(h, 16)) || []);
+  return Uint8Array.from(hex.match(/.{1,2}/g)?.map((h) => parseInt(h, 16)) || []);
 }
 
-export function intToBytes(num: number, alloc = 8): Buffer {
+export function intToBytes(num: number, alloc = 8): Uint8Array {
   let rest = num;
 
-  const buffer = Buffer.alloc(alloc);
+  const buffer = new Uint8Array(alloc);
 
   for (let index = buffer.length - 1; index >= 0 && rest > 0; index -= 1) {
-    buffer.writeUInt8(rest & 255, index);
+    buffer[index] = rest & 255;
     rest = rest >> 8;
   }
 
@@ -24,10 +23,12 @@ export interface HOTPGenerateConfig {
   tokenLength: number;
 }
 
-export function generateHOTP(key: string | Buffer, counter = 0, config: Partial<HOTPGenerateConfig> = {}): string {
+export function generateHOTP(key: string | ArrayLike<number>, counter = 0, config: Partial<HOTPGenerateConfig> = {}): string {
   const { tokenLength } = { ...generateHOTP.defaultConfig, ...config };
 
-  const hmac = createHmacSha1(WordArray.create(intToBytes(counter)), WordArray.create(Buffer.from(key)));
+  const counterBytes = intToBytes(counter);
+  const keyBytes = typeof key === 'string' ? new TextEncoder().encode(key) : Uint8Array.from(key);
+  const hmac = createHmacSha1(WordArray.create(counterBytes), WordArray.create(keyBytes));
 
   const digest = hmac.toString();
 
@@ -56,7 +57,7 @@ export interface HOTPVerifyConfig extends HOTPGenerateConfig {
 }
 
 export function verifyHOTP(
-  key: string | Buffer,
+  key: string | ArrayLike<number>,
   token: string,
   counter = 0,
   config: Partial<HOTPVerifyConfig> = {},

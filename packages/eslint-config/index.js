@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const path = require('node:path');
 const tseslint = require('typescript-eslint');
 const reactPlugin = require('eslint-plugin-react');
@@ -35,11 +36,6 @@ const reactVersion = getReactVersion();
 module.exports = [
   ...tseslint.configs.recommended,
   {
-    plugins: {
-      import: importPlugin,
-      perfectionist: perfectionistPlugin,
-      react: reactPlugin,
-    },
     languageOptions: {
       ecmaVersion: 2018,
       parserOptions: {
@@ -49,13 +45,11 @@ module.exports = [
       },
       sourceType: 'module',
     },
-    settings: reactVersion
-      ? {
-          react: {
-            version: reactVersion,
-          },
-        }
-      : {},
+    plugins: {
+      import: importPlugin,
+      perfectionist: perfectionistPlugin,
+      react: reactPlugin,
+    },
     rules: {
       ...reactPlugin.configs.recommended.rules,
       ...eslintConfigPrettier.rules,
@@ -76,5 +70,12 @@ module.exports = [
       'react/react-in-jsx-scope': 'off',
       'sort-keys': 'warn',
     },
+    settings: reactVersion
+      ? {
+          react: {
+            version: reactVersion,
+          },
+        }
+      : {},
   },
 ];

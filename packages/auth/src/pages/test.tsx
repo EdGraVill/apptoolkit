@@ -2,7 +2,8 @@ import { useSearchParams } from 'next/navigation';
 import { useCallback, useState } from 'react';
 
 export default function TestPage() {
-  const { get } = useSearchParams();
+  const searchParams = useSearchParams();
+  const jwt = searchParams?.get('jwt');
   const [overed, setHovered] = useState<'head' | 'payload' | undefined>(undefined);
 
   const onPointerEvent = useCallback(
@@ -12,11 +13,11 @@ export default function TestPage() {
     [],
   );
 
-  if (!get('jwt')?.match(/(^[\w-]*\.[\w-]*\.[\w-]*$)/g)) {
+  if (!jwt?.match(/(^[\w-]*\.[\w-]*\.[\w-]*$)/g)) {
     return null;
   }
 
-  const [head, payload, sign] = get('jwt')?.split('.') ?? ['', '', ''];
+  const [head, payload, sign] = jwt.split('.') ?? ['', '', ''];
   const [headP, payloadP] = [head, payload].map((data) => Buffer.from(data, 'base64').toString());
 
   const headLeft = Math.abs(head.length - headP.length);

@@ -70,7 +70,7 @@ export function clearAllListeners(event?: Event | Event[]) {
   const emptyStorage = (store: any) => store?.splice?.(0);
 
   if (!event) {
-    Object.values(eventListeners).forEach(emptyStorage);
+    (Object.keys(eventListeners) as unknown as Event[]).map((key) => eventListeners[key]).forEach(emptyStorage);
   }
 
   ((event instanceof Array ? event : [event]) as Event[]).map((event) => eventListeners[event]).forEach(emptyStorage);
