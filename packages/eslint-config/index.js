@@ -4,6 +4,14 @@ const importPlugin = require('eslint-plugin-import');
 const perfectionistPlugin = require('eslint-plugin-perfectionist');
 const eslintConfigPrettier = require('eslint-config-prettier');
 
+function getReactVersion() {
+  try {
+    return require(require.resolve('react/package.json', { paths: [process.cwd()] })).version;
+  } catch {
+    return 'detect';
+  }
+}
+
 module.exports = [
   ...tseslint.configs.recommended,
   {
@@ -23,7 +31,7 @@ module.exports = [
     },
     settings: {
       react: {
-        version: '18.2.0',
+        version: getReactVersion(),
       },
     },
     rules: {
