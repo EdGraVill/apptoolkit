@@ -1,16 +1,36 @@
+const path = require('node:path');
 const tseslint = require('typescript-eslint');
 const reactPlugin = require('eslint-plugin-react');
 const importPlugin = require('eslint-plugin-import');
 const perfectionistPlugin = require('eslint-plugin-perfectionist');
 const eslintConfigPrettier = require('eslint-config-prettier');
 
+function getDeclaredReactVersion() {
+  try {
+    const packageJson = require(path.join(process.cwd(), 'package.json'));
+    const declaredVersion =
+      packageJson.dependencies?.react ||
+      packageJson.devDependencies?.react ||
+      packageJson.peerDependencies?.react;
+
+    const [, major, minor = '0', patch = '0'] =
+      declaredVersion?.match(/(\d+)(?:\.(\d+))?(?:\.(\d+))?/) || [];
+
+    return major ? `${major}.${minor}.${patch}` : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 function getReactVersion() {
   try {
     return require(require.resolve('react/package.json', { paths: [process.cwd()] })).version;
   } catch {
-    return 'detect';
+    return getDeclaredReactVersion();
   }
 }
+
+const reactVersion = getReactVersion();
 
 module.exports = [
   ...tseslint.configs.recommended,
@@ -29,11 +49,13 @@ module.exports = [
       },
       sourceType: 'module',
     },
-    settings: {
-      react: {
-        version: getReactVersion(),
-      },
-    },
+    settings: reactVersion
+      ? {
+          react: {
+            version: reactVersion,
+          },
+        }
+      : {},
     rules: {
       ...reactPlugin.configs.recommended.rules,
       ...eslintConfigPrettier.rules,
