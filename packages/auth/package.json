@@ -6,7 +6,9 @@
     "build": "next build",
     "start": "next start",
     "keygen": "npx @apptoolkit/rsa -p secret > rsa.pem",
-    "lint": "eslint --config ../eslint-config/index.js src"
+    "lint": "eslint --config ../eslint-config/index.js src",
+    "lint:fast": "eslint --cache --cache-location .eslintcache --config ../eslint-config/index.js src",
+    "lint:ci": "eslint --no-cache --config ../eslint-config/index.js src"
   },
   "dependencies": {
     "@apptoolkit/2fa": "^0.5.1",

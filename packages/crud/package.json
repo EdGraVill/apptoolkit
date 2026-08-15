@@ -16,7 +16,9 @@
   "scripts": {
     "build": "rm -rf dist && tsc --build",
     "test": "jest",
-    "lint": "eslint --config ../eslint-config/index.js src"
+    "lint": "eslint --config ../eslint-config/index.js src",
+    "lint:fast": "eslint --cache --cache-location .eslintcache --config ../eslint-config/index.js src",
+    "lint:ci": "eslint --no-cache --config ../eslint-config/index.js src"
   },
   "bugs": {
     "url": "https://github.com/EdGraVill/apptoolkit/issues"

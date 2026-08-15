@@ -5,6 +5,9 @@
   "author": "Eduardo Grajales Villanueva <edgravill@gmail.com>",
   "homepage": "https://github.com/EdGraVill/apptoolkit",
   "main": "index.js",
+  "bin": {
+    "apptoolkit-eslint-config-backend": "./bin/setup.js"
+  },
   "publishConfig": {
     "access": "public"
   },
