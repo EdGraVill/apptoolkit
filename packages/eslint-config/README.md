@@ -47,7 +47,7 @@ Para paquetes con `*.stories.*`, usa dos pasadas como en `@apptoolkit/form` y `@
 Puedes aplicar este patron automaticamente con el comando `setup`:
 
 ```sh
-npx @apptoolkit/eslint-config setup
+npx -p @apptoolkit/eslint-config apptoolkit-eslint-config setup
 ```
 
 Opciones:
