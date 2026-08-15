@@ -24,7 +24,7 @@ async function getKeyPair() {
   if (stringPrivateKey?.includes('.pem') && !stringPrivateKey.includes('KEY-----')) {
     try {
       stringPrivateKey = await readFile(stringPrivateKey, { encoding: 'utf-8' });
-    } catch (error) {}
+    } catch {}
   }
 
   if (!stringPrivateKey) {
@@ -41,7 +41,7 @@ async function getKeyPair() {
     keypair.publicKey = publicKey;
 
     return keypair as KeyPair;
-  } catch (error) {
+  } catch {
     throw new Error(''); // TODO
   }
 }

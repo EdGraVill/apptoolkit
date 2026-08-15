@@ -19,7 +19,7 @@ export default async function (jwt?: string): Promise<(JWTPayload & { jwt: strin
       ...payload,
       jwt: authorization,
     };
-  } catch (error) {
+  } catch {
     // Clear cookies
     return redirect('/signout');
   }

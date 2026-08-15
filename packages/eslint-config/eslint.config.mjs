@@ -1,13 +1,3 @@
-import { defineConfig } from 'eslint/config';
-import tseslint from 'typescript-eslint';
+import config from './index.js';
 
-export default defineConfig(
-  tseslint.configs.recommended,
-  {
-    languageOptions: {
-      globals: {
-        MyGlobal: true,
-      },
-    },
-  },
-)
+export default config;
