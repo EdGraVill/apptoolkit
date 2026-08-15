@@ -4,7 +4,10 @@
   "description": "Eslint and Prettier common config",
   "author": "Eduardo Grajales Villanueva <edgravill@gmail.com>",
   "homepage": "https://github.com/EdGraVill/apptoolkit",
-  "main": "eslint.config.mjs",
+  "main": "index.js",
+  "bin": {
+    "apptoolkit-eslint-config": "./bin/setup.js"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -16,16 +19,14 @@
     "eslint": ">= 10"
   },
   "dependencies": {
-    "@trivago/prettier-plugin-sort-imports": "4.3.0",
-    "eslint": ">= 10",
-    "eslint-config-next": "14.1.3",
-    "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-import": "2.29.1",
-    "eslint-plugin-prettier": "5.1.3",
-    "eslint-plugin-react": "7.34.0",
-    "eslint-plugin-typescript-sort-keys": "3.2.0",
-    "prettier": "3.2.4",
-    "prettier-plugin-tailwindcss": "0.5.12",
-    "typescript-eslint": "^8.57.0"
+    "@trivago/prettier-plugin-sort-imports": "6.0.2",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-import": "2.32.0",
+    "eslint-plugin-perfectionist": "5.10.1",
+    "eslint-plugin-prettier": "5.5.6",
+    "eslint-plugin-react": "7.37.5",
+    "prettier": "3.9.6",
+    "prettier-plugin-tailwindcss": "0.8.1",
+    "typescript-eslint": "8.67.0"
   }
 }

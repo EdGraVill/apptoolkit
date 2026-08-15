@@ -15,7 +15,10 @@
   },
   "scripts": {
     "build": "rm -rf dist && tsc --build",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint --config ../eslint-config/index.js src",
+    "lint:fast": "eslint --cache --cache-location .eslintcache --config ../eslint-config/index.js src",
+    "lint:ci": "eslint --no-cache --config ../eslint-config/index.js src"
   },
   "bugs": {
     "url": "https://github.com/EdGraVill/apptoolkit/issues"
@@ -29,6 +32,7 @@
     "@types/jest": "^28.1.8",
     "@types/node": "^18.7.13",
     "babel-jest": "^29.3.1",
+    "eslint": ">= 10",
     "jest": "^29.3.1",
     "mongodb": "^4.12.1",
     "ts-node": "^10.9.1",
@@ -39,10 +43,5 @@
   },
   "dependencies": {
     "mongodb": "^4.12.1"
-  },
-  "eslintConfig": {
-    "extends": [
-      "@apptoolkit"
-    ]
   }
 }

@@ -143,9 +143,7 @@ export default class MongoCRUD<S extends Fields, I extends FieldsToInterface<S>,
       return this.collection.createIndex(key, { unique: !!field?.isUnique });
     });
 
-    for await (const res of createIndexes) {
-      res;
-    }
+    await Promise.all(createIndexes);
   }
 
   private setDefaultValues(entry: I): I;

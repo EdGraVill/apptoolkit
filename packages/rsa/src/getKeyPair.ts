@@ -24,7 +24,7 @@ async function getKeyPair() {
   if (stringPrivateKey?.includes('.pem') && !stringPrivateKey.includes('KEY-----')) {
     try {
       stringPrivateKey = await readFile(stringPrivateKey, { encoding: 'utf-8' });
-    } catch (error) {}
+    } catch {}
   }
 
   if (!stringPrivateKey) {
@@ -42,7 +42,7 @@ async function getKeyPair() {
 
     return keypair as KeyPair;
   } catch (error) {
-    throw new Error(''); // TODO
+    throw new Error('Failed to derive RSA key pair from RSA_PRIVATE_KEY', { cause: error });
   }
 }
 
