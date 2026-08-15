@@ -42,7 +42,9 @@ async function getKeyPair() {
 
     return keypair as KeyPair;
   } catch (error) {
-    throw new Error('Failed to derive RSA key pair from RSA_PRIVATE_KEY', { cause: error });
+    const wrappedError = new Error('Failed to derive RSA key pair from RSA_PRIVATE_KEY');
+    (wrappedError as Error & { cause?: unknown }).cause = error;
+    throw wrappedError;
   }
 }
 
