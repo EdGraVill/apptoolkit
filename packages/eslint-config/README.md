@@ -1,6 +1,6 @@
 # `@apptoolkit/eslint-config`
 
-Flat config compartido para ESLint 9+ y 10.
+Flat config compartido para ESLint 10+.
 
 ## Requisitos
 
