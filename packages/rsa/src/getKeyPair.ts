@@ -41,8 +41,8 @@ async function getKeyPair() {
     keypair.publicKey = publicKey;
 
     return keypair as KeyPair;
-  } catch {
-    throw new Error(''); // TODO
+  } catch (error) {
+    throw new Error('Failed to derive RSA key pair from RSA_PRIVATE_KEY', { cause: error });
   }
 }
 
