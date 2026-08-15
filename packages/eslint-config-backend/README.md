@@ -45,7 +45,7 @@ Patron sugerido para cada paquete consumidor backend:
 Puedes aplicar este patron automaticamente con el comando `setup`:
 
 ```sh
-npx @apptoolkit/eslint-config-backend setup
+npx -p @apptoolkit/eslint-config-backend apptoolkit-eslint-config-backend setup
 ```
 
 Opciones:
